@@ -5,7 +5,7 @@ export default function Header() {
     <header className=" flex h-12 gap-5 p-4 justify-between items-center bg-white sticky top-0 z-30">
       
         <div className=" flex justify-center items-center gap-5 ">
-          <Link>
+          <Link to="/">
             <img className=" h-5"
             src="../../public/Logonew.png" alt="" />
           </Link>
@@ -14,11 +14,11 @@ export default function Header() {
           <Link>Kids</Link>
         </div>
         <div className=" flex justify-center items-center gap-2    ">
-          <Link>SignUp</Link>
+          <Link to="/signup">SignUp</Link>
           <Link>
             <img src="../../public/icons8-cart-48.png" alt="" />
           </Link>
-          <Link>
+          <Link to = "/login">
             <img src="../../public/icons8-user-48.png" alt="" />
           </Link>
         </div>
