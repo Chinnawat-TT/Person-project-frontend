@@ -2,7 +2,7 @@
 
 export default function HomePage() {
   return (
-    <div className=" min-h-full">
+    <div>
         <img src="../../public/content1.png" alt="" />
     </div>
   )
