@@ -9,13 +9,13 @@ export default function Header() {
             <img className=" h-5"
             src="../../public/Logonew.png" alt="" />
           </Link>
-          <Link>Men</Link>
-          <Link>Women</Link>
-          <Link>Kids</Link>
+          <Link to ="/men">Men</Link>
+          <Link to ="/women">Women</Link>
+          <Link to="/kids">Kids</Link>
         </div>
         <div className=" flex justify-center items-center gap-2    ">
           <Link to="/signup">SignUp</Link>
-          <Link>
+          <Link to="/cart">
             <img src="../../public/icons8-cart-48.png" alt="" />
           </Link>
           <Link to = "/login">
