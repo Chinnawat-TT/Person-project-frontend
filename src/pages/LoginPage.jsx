@@ -2,10 +2,10 @@
 
 export default function LoginPage() {
   return (
-    <div>
+    <div className=" flex  justify-center items-center " >
       <div>
         <div>
-        <h3>LOGIN</h3>
+        <h1>LOGIN</h1>
         <span>Login with your email address and password.</span>
         </div>
         <div>
@@ -16,12 +16,13 @@ export default function LoginPage() {
           <h4>PASSWORD</h4>
           <input type="password" />
         </div>
+        <button className="  border rounded-md px-5 py-2 bg-black text-white">LOGIN</button>
       </div>
-      <div>
+      <div className=" flex flex-col ">
         <h4>CREATE AN ACCOUNT</h4>
         <span>If you create an account, it takes less time to go through checkout
       and complete your orders. Register today for free! </span>
-       <button>CREATE AN ACCOUNT</button>
+       <button className="  border rounded-md px-5 py-2 bg-black text-white">CREATE AN ACCOUNT</button>
       </div>
     </div>
   )

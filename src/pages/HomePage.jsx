@@ -2,6 +2,8 @@
 
 export default function HomePage() {
   return (
-    <div>HomePage</div>
+    <div className=" min-h-full">
+        <img src="../../public/content1.png" alt="" />
+    </div>
   )
 }
