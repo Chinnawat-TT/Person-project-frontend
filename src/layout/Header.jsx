@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useAuth } from "../hooks/use-Auth";
 
 export default function Header() {
@@ -26,7 +26,7 @@ export default function Header() {
         <Link to="/cart">
           <img src="../../public/icons8-cart-48.png" alt="" />
         </Link>
-        {authUser ? ( <div className=" cursor-pointer  flex justify-center items-center" onClick={logout}> <span>logout</span><span class="material-symbols-outlined">logout</span></div>
+        {authUser ? ( <div className=" cursor-pointer  flex justify-center items-center" onClick={logout}> <span>logout</span><span class="material-symbols-outlined">logout</span>  </div>
           
         ) : (
           <Link to="/login">
