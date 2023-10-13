@@ -9,6 +9,8 @@ import KidsPage from '../pages/sale/KidsPage'
 import CartPage from '../pages/CartPage'
 import ProfilePage from '../pages/ProfilePage'
 import RedireactAuthenticated from '../features/auth/RedireactAuthenticated'
+import AdminPage from '../features/profile/AdminPage'
+import AddProduct from '../features/profile/AddProduct'
 
 const router = createBrowserRouter([
     {
@@ -26,7 +28,10 @@ const router = createBrowserRouter([
             {path : "/men", element : <MenPage/>},
             {path : "/women", element : <WomenPage/>},
             {path : "/kids", element : <KidsPage/>},
-            {path : "/profile", element : <ProfilePage/>}
+            {path : "/profile", element : <ProfilePage/>},
+            {path : "/admin", element : <AdminPage/>},
+            {path : "/admin/addproduct", element : <AddProduct/>}
+
 
         ]
     }
