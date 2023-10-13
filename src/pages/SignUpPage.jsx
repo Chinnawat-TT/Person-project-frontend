@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useAuth } from '../hooks/use-Auth'
 import { toast } from "react-toastify"
 import InputErrorMessage from "../features/auth/InputErrorMessage";
+import { Navigate } from "react-router-dom";
 
 const SignUpSchema = Joi.object({
   fullName: Joi.string().trim().required(),
@@ -34,7 +35,7 @@ export default function SignUpPage() {
   });
 
   const [error, setError] = useState({});
-  const { signup } =useAuth()
+  const { signup, authUser } =useAuth()
 
   const handleChangeInput = (event) => {
    
@@ -50,6 +51,9 @@ export default function SignUpPage() {
     setError({});
     signup(input).catch( err => toast.error(err.response?.data.message))
   };
+  if(authUser){
+    return <Navigate to="/" />
+  }
   return (
     <form
       className=" flex flex-col items-center justify-center h-[90vh] "
@@ -71,7 +75,7 @@ export default function SignUpPage() {
             name="fullName"
             hasError={error.fullName}
           />
-          {error.fullName && <InputErrorMessage message={error.fullName}/>}
+          {error.fullName && <InputErrorMessage mes sage={error.fullName}/>}
         </div>
         <div className=" flex ">
           <h4>EMAIL ADDRESS</h4>

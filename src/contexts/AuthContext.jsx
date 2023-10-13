@@ -1,11 +1,25 @@
-import { createContext, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 import axios from "../config/axios"
-import { addAccessToken } from "../utils/local-storage";
+import { addAccessToken, getAccessToken, removeAccessToken } from "../utils/local-storage";
+
 
 export const AuthContext =createContext();
 
 export default function AuthContextProvider({ children }) {
 const [authUser , setAuthUser]= useState(null)
+const [intialLoading ,setIntialLoading]=useState(true)
+
+useEffect( ()=>{
+  if( getAccessToken()){
+    axios.get('/verifi/me').then( (res)=>{
+      setAuthUser(res.data.user)
+    }).finally( ()=>{
+      setIntialLoading(false)
+    })
+  } else {
+    setIntialLoading(false)
+  }
+},[])
 
 const signup = async (registerObject) => {
   const response = await axios.post('/verifi/signup', registerObject)
@@ -19,9 +33,14 @@ const login = async (certificate) =>{
   addAccessToken(response.data.accessToken)
   console.log(response)
 }
+const logout =()=>{
+  removeAccessToken()
+  setAuthUser(null)
+}
 
+console.log(authUser)
   return (
-    <AuthContext.Provider value={ {signup ,authUser ,login } } >
+    <AuthContext.Provider value={ {signup ,authUser ,login ,logout , intialLoading} } >
         {children}
     </AuthContext.Provider>
   )

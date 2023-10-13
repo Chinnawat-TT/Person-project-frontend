@@ -4,6 +4,8 @@ import SignUpInput from "../features/auth/SignUpInput";
 import { useAuth } from "../hooks/use-Auth";
 import { toast } from "react-toastify";
 import InputErrorMessage from "../features/auth/InputErrorMessage";
+import { Navigate } from "react-router-dom";
+
 
 const LoginSchema = Joi.object({
   email : Joi.string().trim().email({ tlds: false }).required(),
@@ -11,6 +13,7 @@ const LoginSchema = Joi.object({
 })
 const validateLogin = input =>{
   const { error } = LoginSchema.validate(input , { abortEarly : false })
+  console.log(error)
   if(error){
       const result = error.details.reduce((acc,el) =>{
           const { message , path} =el
@@ -28,7 +31,8 @@ export default function LoginPage() {
     password : ""
   })
   const [error,setError]=useState({})
-  const { login } =useAuth()
+  const { login , authUser} =useAuth()
+ 
 
   const handleChangeInput = (event) =>{
     setInput({ ...input , [event.target.name]:event.target.value })
@@ -41,8 +45,16 @@ export default function LoginPage() {
     }
     setError({})
     login(input).catch(err => toast.error(err.response?.data.message) )
+    
+      
   }
 
+  console.log(authUser)
+
+  if(authUser){
+    return <Navigate to="/"/>
+  }
+  
   return (
     <div className=" flex  justify-center items-center h-[90vh] " >
       <form onSubmit={handleSubmit}>

@@ -7,13 +7,16 @@ import MenPage from '../pages/sale/MenPage'
 import WomenPage from '../pages/sale/WomenPage'
 import KidsPage from '../pages/sale/KidsPage'
 import CartPage from '../pages/CartPage'
+import ProfilePage from '../pages/ProfilePage'
+import RedireactAuthenticated from '../features/auth/RedireactAuthenticated'
 
 const router = createBrowserRouter([
     {
         path : "/",    
         element : (
             
-            <Layout/>
+                <Layout/>
+            
         ),
         children :[
             {path : "",element : <HomePage/>},
@@ -22,7 +25,8 @@ const router = createBrowserRouter([
             {path : "/login" , element : <LoginPage/> },
             {path : "/men", element : <MenPage/>},
             {path : "/women", element : <WomenPage/>},
-            {path : "/kids", element : <KidsPage/>}
+            {path : "/kids", element : <KidsPage/>},
+            {path : "/profile", element : <ProfilePage/>}
 
         ]
     }
