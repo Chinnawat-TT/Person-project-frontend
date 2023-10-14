@@ -87,12 +87,7 @@ export default function LoginPage() {
         </div>
         <button className="  border rounded-md px-5 py-2 bg-black text-white">LOGIN</button>
       </form>
-      <div className=" flex flex-col ">
-        <h4>CREATE AN ACCOUNT</h4>
-        <span>If you create an account, it takes less time to go through checkout
-      and complete your orders. Register today for free! </span>
-       <button className="  border rounded-md px-5 py-2 bg-black text-white">CREATE AN ACCOUNT</button>
-      </div>
+      
     </div>
   )
 }

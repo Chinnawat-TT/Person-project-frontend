@@ -1,18 +1,18 @@
 
 
-export default function SaleCard() {
+export default function SaleCard({ show }) {
+  console.log("++++++++++++++++++++++++++",show)
   return (
-    <div className="  h-1/3 w-1/3 border rounded-lg ">
-      
 
+    <div className=" w-full border rounded-lg ">
       <div>
         <img 
         className=" rounded-lg"
-        src="../../../public/oversize-vintage.png" alt="" />
+        src={show.mainImage} alt="" />
       </div>
       <div className=" flex flex-col justify-center items-center">
-        <span>Oversized - vintage</span>
-        <span>390 Bath</span>
+        <span>{show.name}</span>
+        <span>{show.price}Bath</span>
       </div>
 
      

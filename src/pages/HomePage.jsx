@@ -2,8 +2,8 @@
 
 export default function HomePage() {
   return (
-    <div >
-        <img src="../../public/content1.png" alt="" />
+    <div className=" w-full flex items-center justify-center ">
+        <img className =" object-contain" src="../../public/content2.png" alt=""  />
     </div>
   )
 }

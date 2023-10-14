@@ -60,25 +60,32 @@ export default function SignUpPage() {
       onSubmit={handleSubmit}
     >
       <h1>CREATE AN ACCOUNT</h1>
-      <div>
+      <div className=" flex flex-col gap-5">
         <span>
           You will receive the confirmation mail to your email address
           associated with account. Please make sure to check your incoming email
           from us.
         </span>
-        <div className=" flex  ">
+        <div className=" flex  flex-col">
           <h4>FULLNAME</h4>
-          <SignUpInput
+          <div className=" w-1/3">
+
+          <SignUpInput 
+            
             placeholder="fullname"
             value={input.fullName}
             onChange={handleChangeInput}
             name="fullName"
             hasError={error.fullName}
           />
+          </div>
+
           {error.fullName && <InputErrorMessage mes sage={error.fullName}/>}
         </div>
-        <div className=" flex ">
+        <div className=" flex  flex-col">
           <h4>EMAIL ADDRESS</h4>
+          <div className=" w-1/3">
+
           <SignUpInput
             placeholder="email"
             value={input.email}
@@ -86,10 +93,13 @@ export default function SignUpPage() {
             name="email"
             hasError={error.email}
           />
+          </div>
           {error.email && <InputErrorMessage message={error.email}/>}
         </div>
-        <div className=" flex ">
+        <div className=" flex flex-col">
           <h4>PASSWORD</h4>
+          <div className=" w-1/3">
+
           <SignUpInput
             placeholder="password"
             value={input.password}
@@ -98,10 +108,13 @@ export default function SignUpPage() {
             hasError={error.password}
             type="password"
           />
+          </div>
           {error.password && <InputErrorMessage message={error.password}/>}
         </div>
-        <div className=" flex ">
+        <div className=" flex flex-col">
           <h4>CONFIRM PASSWORD</h4>
+          <div className=" w-1/3">
+
           <SignUpInput
             placeholder="confirm password"
             value={input.confirmPassword}
@@ -110,10 +123,11 @@ export default function SignUpPage() {
             hasError={error.confirmPassword}
             type="password"
           />
+          </div>
           {error.confirmPassword && <InputErrorMessage message={error.confirmPassword}/>}
         </div>
 
-        <button className=" border bg-black text-white rounded-lg py-2 px-5">
+        <button className=" border bg-black text-white rounded-lg py-2 px-5 w-fit">
           SignUp
         </button>
       </div>
