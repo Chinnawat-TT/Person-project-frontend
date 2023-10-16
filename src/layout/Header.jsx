@@ -10,7 +10,7 @@ export default function Header() {
         <Link to="/">
           <img className=" h-5" src="../../public/logoneww.png" alt="" />
         </Link>
-        <Link to="/sale/men">Men</Link>
+        <Link to="/men">Men</Link>
         <Link to="/women">Women</Link>
         <Link to="/kids">Kids</Link>
       </div>

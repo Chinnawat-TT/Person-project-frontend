@@ -11,7 +11,7 @@ export default function WomenPage() {
     axios.get("/sale/women").then( res => setShow(res.data)).catch( err => console.log(err))
   },[])
   return (
-    <div className=" flex flex-col md:flex-row gap-4 p-4 w-full">
+    <div className=" flex flex-col md:flex-row gap-4 p-4 w-full justify-center items-center">
       {show.map((el,index)=>(
         <div key={index}>
           

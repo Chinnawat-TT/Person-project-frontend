@@ -9,7 +9,7 @@ export default function KidsPage() {
 
   },[])
   return (
-    <div className=" flex flex-col md:flex-row gap-4 p-4 w-full">
+    <div className=" flex flex-col md:flex-row gap-4 p-4 w-full items-center justify-center">
     {show.map((el,index)=>(
       <div key={index}>
         

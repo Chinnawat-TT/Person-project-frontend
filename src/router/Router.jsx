@@ -11,6 +11,7 @@ import ProfilePage from '../pages/ProfilePage'
 import RedireactAuthenticated from '../features/auth/RedireactAuthenticated'
 import AdminPage from '../features/profile/AdminPage'
 import AddProduct from '../features/profile/AddProduct'
+import SaleCardItem from '../pages/sale/SaleCardItem'
 
 const router = createBrowserRouter([
     {
@@ -25,12 +26,13 @@ const router = createBrowserRouter([
             {path : '/cart', element : <CartPage/>},
             {path : "/signup" , element : <SignUpPage/>},
             {path : "/login" , element : <LoginPage/> },
-            {path : "/sale/men", element : <MenPage/>},
+            {path : "/men", element : <MenPage/>},
             {path : "/women", element : <WomenPage/>},
             {path : "/kids", element : <KidsPage/>},
             {path : "/profile", element : <ProfilePage/>},
             {path : "/admin", element : <AdminPage/>},
-            {path : "/admin/addproduct", element : <AddProduct/>}
+            {path : "/admin/addproduct", element : <AddProduct/>},
+            {path : "/men/saleitem/:itemId",element:<SaleCardItem/>}
 
 
         ]
