@@ -8,8 +8,7 @@ function App() {
 const { intialLoading } = useAuth()
 if(intialLoading){
   return <Loading/>
-}
-
+}else {
   return (
     <>
     <Router/>
@@ -17,5 +16,8 @@ if(intialLoading){
     </>
   )
 }
+}
+
+
 
 export default App

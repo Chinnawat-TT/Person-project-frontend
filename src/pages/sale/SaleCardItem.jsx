@@ -1,7 +1,19 @@
+import { useParams } from "react-router-dom";
+import axios from "../../config/axios";
+import { useEffect } from "react";
+
 export default function SaleCardItem() {
+  const { itemId } = useParams();
+console.log(itemId)
+  useEffect(() => {
+    axios
+      .get(`/sale/men/item/${itemId}`)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div className=" bg-red-100  grid grid-cols-2">
-      
       <div className=" bg-yellow-200">
         <div> main image </div>
         <div>sub image 1</div>
@@ -42,8 +54,7 @@ export default function SaleCardItem() {
           <span>ProducutID : </span>
         </div>
         <span>
-          - Narrow crew neck design for a sleek style. 
-          - Half-length sleeves. -
+          - Narrow crew neck design for a sleek style. - Half-length sleeves. -
           Wide fit with drop shoulders. - The double-faced structure of the
           fabric, drop shoulders, and wide fit make for an elegant silhouette.-
           Unisex design. - A versatile wardrobe essential.
