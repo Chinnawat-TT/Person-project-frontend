@@ -14,8 +14,11 @@ useEffect( ()=>{
   if( getAccessToken()){
     axios.get('/verifi/me').then( (res)=>{
       setAuthUser(res.data.user)
+      console.log("loading in comming")
     }).finally( ()=>{
-      setIntialLoading(false)
+      setTimeout(() => {
+        setIntialLoading(false)
+      }, 1000);
     })
   } else {
     setIntialLoading(false)
@@ -37,6 +40,7 @@ const login = async (certificate) =>{
 const logout =()=>{
   removeAccessToken()
   setAuthUser(null)
+  
 }
 
 console.log(authUser)

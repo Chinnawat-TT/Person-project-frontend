@@ -15,10 +15,17 @@ export default function Header() {
         <Link to="/kids">Kids</Link>
       </div>
       <div className=" flex justify-center items-center gap-2    ">
-        {authUser?.isAdmin ? <Link to="/admin">
-        <span class="material-symbols-outlined">shield_person</span>
-        </Link> : ""}
-        {authUser ? (<Link to="/profile"><img src="../../public/icons8-user-48.png" alt="" /></Link>
+        {authUser?.isAdmin ? (
+          <Link to="/admin">
+            <span class="material-symbols-outlined">shield_person</span>
+          </Link>
+        ) : (
+          ""
+        )}
+        {authUser ? (
+          <Link to="/profile">
+            <img src="../../public/icons8-user-48.png" alt="" />
+          </Link>
         ) : (
           <Link to="/signup">SignUp</Link>
         )}
@@ -26,14 +33,22 @@ export default function Header() {
         <Link to="/cart">
           <img src="../../public/icons8-cart-48.png" alt="" />
         </Link>
-        {authUser ? ( <div className=" cursor-pointer  flex justify-center items-center" onClick={logout}> <span>logout</span><span class="material-symbols-outlined">logout</span>  </div>
-          
+        {authUser ? (
+          <Link to="/">
+          <div
+            className=" cursor-pointer  flex justify-center items-center"
+            onClick={logout}
+          >
+            {" "}
+            <span>logout</span>
+            <span class="material-symbols-outlined">logout</span>{" "}
+          </div>
+          </Link>
         ) : (
           <Link to="/login">
             <img src="../../public/icons8-user-48.png" alt="" />
           </Link>
         )}
-        
       </div>
     </header>
   );
