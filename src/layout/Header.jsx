@@ -17,7 +17,7 @@ export default function Header() {
       <div className=" flex justify-center items-center gap-2    ">
         {authUser?.isAdmin ? (
           <Link to="/admin">
-            <span class="material-symbols-outlined">shield_person</span>
+            <span className="material-symbols-outlined">shield_person</span>
           </Link>
         ) : (
           ""
@@ -41,7 +41,7 @@ export default function Header() {
           >
             {" "}
             <span>logout</span>
-            <span class="material-symbols-outlined">logout</span>{" "}
+            <span className="material-symbols-outlined">logout</span>{" "}
           </div>
           </Link>
         ) : (
