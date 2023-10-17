@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import axios from "../../config/axios";
 import { useState } from "react";
-
+import Loading from "../../components/Loading"
+useNavigate
 export default function AddProduct() {
   const [fileMainImage, setFileMainImage] = useState(null);
   const [fileSubImage, setFileSubImage] = useState([]);
@@ -11,7 +13,8 @@ export default function AddProduct() {
     description: "",
     type: "",
   });
-
+  const [loading,setLoading]= useState(false)
+  const navigate = useNavigate()
   const createProduct = async (data) => {
     await axios.post("/admin", data);
   };
@@ -35,12 +38,17 @@ export default function AddProduct() {
       formData.append("mainImage", fileMainImage);
       formData.append("message", JSON.stringify(input));
       await createProduct(formData);
+      setLoading(true);
     } catch (err) {
       console.log(err);
+    } finally {
+        setLoading(false)
+        navigate('/admin')
     }
   };
   return (
     <form onSubmit={handleSubmitForm}>
+        {loading && <Loading/>}
       <nav className=" p-4"> ADMIN - ADDPRODUCT </nav>
       <div className="  bg-red-100  flex flex-col gap-5 items-center justify-center">
         <span>Create product</span>
