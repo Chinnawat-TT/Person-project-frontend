@@ -1,7 +1,9 @@
+import axios from "../../config/axios";
 import { useState } from "react";
 
 export default function AddProduct() {
-  const [file, setFile] = useState(null);
+  const [fileMainImage, setFileMainImage] = useState(null);
+  const [fileSubImage, setFileSubImage] = useState([]);
   const [input, setInput] = useState({
     name: "",
     categories: "",
@@ -9,20 +11,36 @@ export default function AddProduct() {
     description: "",
     type: "",
   });
-  const handleChangeInput = (event) => {
-   
-        setInput({ ...input, [event.target.name]: event.target.value });
-};
 
-  const handleSubmitForm = (event) => {
+  const createProduct = async (data) => {
+    await axios.post("/admin", data);
+  };
+
+  //   const handleChangeImage = (event) => {
+  //     setFile({ ...file, [event.target.name]: event.target.files[0] });
+  //   };
+
+  const handleChangeInput = (event) => {
+    setInput({ ...input, [event.target.name]: event.target.value });
+  };
+
+  const handleSubmitForm = async (event) => {
     try {
       event.preventDefault();
+      const formData = new FormData();
+
+      for (let i = 0; i < fileSubImage.length; i++) {
+        formData.append("subImage", fileSubImage[i]);
+      }
+      formData.append("mainImage", fileMainImage);
+      formData.append("message", JSON.stringify(input));
+      await createProduct(formData);
     } catch (err) {
       console.log(err);
     }
   };
   return (
-    <form>
+    <form onSubmit={handleSubmitForm}>
       <nav className=" p-4"> ADMIN - ADDPRODUCT </nav>
       <div className="  bg-red-100  flex flex-col gap-5 items-center justify-center">
         <span>Create product</span>
@@ -38,18 +56,30 @@ export default function AddProduct() {
         </div>
         <div className=" flex flex-col">
           <span>Price</span>
-          <input type="text" placeholder="price" />
+          <input
+            type="text"
+            placeholder="price"
+            name="price"
+            value={input.price}
+            onChange={handleChangeInput}
+          />
         </div>
         <div className=" flex flex-col">
           <span>Type</span>
-          <select name="type" id="type-select">
+          <select name="type" id="type-select" onChange={handleChangeInput}>
+            <option value="">You have selected</option>
             <option value="TSHIRT">TSHIRT</option>
             <option value="JACKET">JACKET</option>
           </select>
         </div>
         <div className=" flex flex-col">
-          <span>Categoriest</span>
-          <select name="categoriest" id="categoriest-select">
+          <span>Categories</span>
+          <select
+            name="categories"
+            id="categories-select"
+            onChange={handleChangeInput}
+          >
+            <option value="">You have selected</option>
             <option value="MEN">MEN</option>
             <option value="WOMEN">WOMEN</option>
             <option value="KIDS">KIDS</option>
@@ -57,16 +87,21 @@ export default function AddProduct() {
         </div>
         <div className=" flex flex-col">
           <span>Description</span>
-          <textarea id="description" name="description"></textarea>
+          <textarea
+            id="description"
+            name="description"
+            value={input.description}
+            onChange={handleChangeInput}
+          ></textarea>
         </div>
         <div className=" flex flex-col">
           <span>Main image</span>
           <input
             type="file"
+            name="mainImage"
             onChange={(event) => {
-              console.log(event);
               if (event.target.files[0]) {
-                setFile(event.target.files[0]);
+                setFileMainImage(event.target.files[0]);
               }
             }}
           />
@@ -76,9 +111,11 @@ export default function AddProduct() {
           <input
             type="file"
             multiple
+            name="subImage"
             onChange={(event) => {
-              if (event.target.files[0]) {
-                setFile(event.target.files[0]);
+              console.log("#############", event.target.files);
+              if (event.target.files) {
+                setFileSubImage(event.target.files);
               }
             }}
           />
