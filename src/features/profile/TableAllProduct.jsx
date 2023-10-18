@@ -4,6 +4,7 @@ import Table from "./Table";
 
 export default function TableAllProduct() {
   const [data, setData] = useState([]);
+  
 
   const deleteProduct = async(productId)=>{
     try {
@@ -14,6 +15,19 @@ export default function TableAllProduct() {
       console.log(err)
     }
   }
+
+  const editDetailProduct = async (productId,body)=>{
+    try {
+      console.log("click edit detail product")
+      await axios.patch(`/admin/detail/${productId}`,body).then(res => console.log(res))
+      
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+
+
   useEffect(() => {
     axios
       .get("/admin")
@@ -21,11 +35,9 @@ export default function TableAllProduct() {
       .catch((err) => console.log(err));
   }, []);
   console.log(data)
-  const handleClickDelete =()=>{
-    deleteProduct(el.id)
-  }
+  
   return (
-    <div>
+    <div className=" gap-5">
 
       <table className="table-auto border-collapse border-spacing-2">
         <thead>
@@ -42,7 +54,7 @@ export default function TableAllProduct() {
         <tbody>
           <tr>
           {data?.map( (el)=>(
-                <Table key={el.id} productobj={el} deleteProduct={deleteProduct}/>
+                <Table key={el.id} productobj={el} deleteProduct={deleteProduct} editDetailProduct={editDetailProduct}/>
               ))}
           </tr>
         </tbody>
