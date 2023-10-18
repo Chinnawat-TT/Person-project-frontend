@@ -1,15 +1,29 @@
 import { useEffect, useState } from "react";
 import axios from "../../config/axios";
+import Table from "./Table";
 
 export default function TableAllProduct() {
   const [data, setData] = useState([]);
+
+  const deleteProduct = async(productId)=>{
+    try {
+      console.log("clickdelete")
+      await axios.delete(`/admin/${productId}`)
+      setData(data.filter( el => el.id !== productId))
+    } catch (err) {
+      console.log(err)
+    }
+  }
   useEffect(() => {
     axios
       .get("/admin")
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
   }, []);
-
+  console.log(data)
+  const handleClickDelete =()=>{
+    deleteProduct(el.id)
+  }
   return (
     <div>
 
@@ -27,25 +41,8 @@ export default function TableAllProduct() {
         </thead>
         <tbody>
           <tr>
-          {data?.map( (el,index)=>(
-                <div key={index} className=" w-full " >
-                  
-                  <td>{el.id}</td>
-                  <td>{el.name}</td>
-                  <td>{el.price}</td>
-                  <td>{el.categories}</td>
-                  <td>{el.type}</td>
-                  <td>{el.description}</td>
-                  <td><img className=" h-10 w-10" src={el.mainImage} alt="" /></td>
-                  <button>
-                  <span className="material-symbols-outlined">edit</span>
-                  </button>
-                  <button>
-
-                  <span className="material-symbols-outlined">delete</span>
-                  </button>
-
-                  </div>
+          {data?.map( (el)=>(
+                <Table key={el.id} productobj={el} deleteProduct={deleteProduct}/>
               ))}
           </tr>
         </tbody>
