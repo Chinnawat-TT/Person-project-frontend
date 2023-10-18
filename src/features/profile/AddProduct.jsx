@@ -37,8 +37,8 @@ export default function AddProduct() {
       }
       formData.append("mainImage", fileMainImage);
       formData.append("message", JSON.stringify(input));
-      await createProduct(formData);
       setLoading(true);
+      await createProduct(formData);
     } catch (err) {
       console.log(err);
     } finally {
@@ -121,7 +121,6 @@ export default function AddProduct() {
             multiple
             name="subImage"
             onChange={(event) => {
-              console.log("#############", event.target.files);
               if (event.target.files) {
                 setFileSubImage(event.target.files);
               }
