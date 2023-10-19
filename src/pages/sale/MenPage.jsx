@@ -8,12 +8,10 @@ export default function MenPage() {
   const [show, setShow] = useState([]);
   
   useEffect(() => {
-      
     axios
       .get("/sale/men/")
       .then((res) => setShow(res.data))
       .catch((err) => console.log(err))
-      
   }, []);
   console.log(show);
   

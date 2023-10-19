@@ -1,12 +1,18 @@
 import { useState } from "react";
 
-export default function SaleItem({ show }) {
+export default function SaleItem({ show ,addToCart}) {
   const {Productsimage}=show
   
   const [size ,setSize]=useState("")
-  const [active ,setActive]=useState("")
+
+  const handleSubmitForm = (event)=>{
+    event.preventDefault();
+    show.size = size
+    addToCart(show)
+    
+  }
   return (
-    <form>
+    <form onSubmit={handleSubmitForm}>
       <div className=" bg-yellow-200">
         <div><img src={show.mainImage} alt="" /> </div>
         {Productsimage.map( (el, index)=>(
@@ -21,10 +27,10 @@ export default function SaleItem({ show }) {
         <span>size</span>
         <div className=" flex gap-4">
           
-          <span className={` cursor-pointer hover:bg-red-400 p-4 ${ size === "S" ? "bg-yellow-200":""}`} onClick={()=>setSize("S")}>S</span>
-          <span className={` cursor-pointer hover:bg-red-400 p-4 ${ size === "M" ? "bg-yellow-200":""}`} onClick={()=>setSize("M")}>M</span>
-          <span className={` cursor-pointer hover:bg-red-400 p-4 ${ size === "L" ? "bg-yellow-200":""}`} onClick={()=>setSize("L")}>L</span>
-          <span className={` cursor-pointer hover:bg-red-400 p-4 ${ size === "XL" ? "bg-yellow-200":""}`} onClick={()=>setSize("XL")}>XL</span>
+          <span className={` cursor-pointer hover:bg-slate-300 p-4 ${ size === "S" ? "bg-yellow-200":""}`} onClick={()=>setSize("S")}>S</span>
+          <span className={` cursor-pointer hover:bg-slate-300  p-4 ${ size === "M" ? "bg-yellow-200":""}`} onClick={()=>setSize("M")}>M</span>
+          <span className={` cursor-pointer hover:bg-slate-300  p-4 ${ size === "L" ? "bg-yellow-200":""}`} onClick={()=>setSize("L")}>L</span>
+          <span className={` cursor-pointer hover:bg-slate-300  p-4 ${ size === "XL" ? "bg-yellow-200":""}`} onClick={()=>setSize("XL")}>XL</span>
         </div>
         {/* <span>quantity</span>
         <select name="size" id="size-select">
