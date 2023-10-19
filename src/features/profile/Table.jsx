@@ -5,13 +5,14 @@ import EditProduct from "./EditProduct"
 
 export default function Table({ productobj ,deleteProduct,editDetailProduct }) {
     const [isopen , setIsOpen]= useState(false)
-console.log(productobj)
+
 const handleClickDelete =()=>{
     deleteProduct(productobj.id)
   }
 const handleClickEditDetial =(body)=>{
     
     editDetailProduct(productobj.id,body)
+    setIsOpen(false)
 }
   return (
     <div>

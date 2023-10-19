@@ -1,9 +1,12 @@
+import { useState } from "react";
+
 export default function SaleItem({ show }) {
   const {Productsimage}=show
-  console.log(Productsimage)
-
+  
+  const [size ,setSize]=useState("")
+  const [active ,setActive]=useState("")
   return (
-    <>
+    <form>
       <div className=" bg-yellow-200">
         <div><img src={show.mainImage} alt="" /> </div>
         {Productsimage.map( (el, index)=>(
@@ -12,17 +15,18 @@ export default function SaleItem({ show }) {
          </div>
         ))}
       </div>
-      <div className=" flex flex-col bg-green-200">
+      <div className=" flex flex-col ">
         <span>{show.name}</span>
         <span>price : {show.price}</span>
         <span>size</span>
         <div className=" flex gap-4">
-          <button>S</button>
-          <button>M</button>
-          <button>L</button>
-          <button>XL</button>
+          
+          <span className={` cursor-pointer hover:bg-red-400 p-4 ${ size === "S" ? "bg-yellow-200":""}`} onClick={()=>setSize("S")}>S</span>
+          <span className={` cursor-pointer hover:bg-red-400 p-4 ${ size === "M" ? "bg-yellow-200":""}`} onClick={()=>setSize("M")}>M</span>
+          <span className={` cursor-pointer hover:bg-red-400 p-4 ${ size === "L" ? "bg-yellow-200":""}`} onClick={()=>setSize("L")}>L</span>
+          <span className={` cursor-pointer hover:bg-red-400 p-4 ${ size === "XL" ? "bg-yellow-200":""}`} onClick={()=>setSize("XL")}>XL</span>
         </div>
-        <span>quantity</span>
+        {/* <span>quantity</span>
         <select name="size" id="size-select">
           <option value="1">1</option>
           <option value="2">2</option>
@@ -36,7 +40,7 @@ export default function SaleItem({ show }) {
           <option value="10">10</option>
           <option value="11">11</option>
           <option value="12">12</option>
-        </select>
+        </select> */}
         <button className=" bg-red-900 p-5"> ADD TO CART </button>
       </div>
       <div className=" bg-cyan-300 ">
@@ -49,6 +53,6 @@ export default function SaleItem({ show }) {
           {show.description}
         </span>
       </div>
-    </>
+    </form>
   );
 }

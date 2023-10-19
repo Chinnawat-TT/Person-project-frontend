@@ -19,7 +19,8 @@ export default function TableAllProduct() {
   const editDetailProduct = async (productId,body)=>{
     try {
       console.log("click edit detail product")
-      await axios.patch(`/admin/detail/${productId}`,body).then(res => console.log(res))
+      console.log(data)
+      await axios.patch(`/admin/detail/${productId}`,body).then(res => setData(res.data)).catch( err => console.log(err))
       
     } catch (err) {
       console.log(err)
