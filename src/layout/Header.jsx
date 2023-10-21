@@ -1,8 +1,26 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "../hooks/use-Auth";
+import { useEffect, useState } from "react";
+import axios from "../config/axios";
+
 
 export default function Header() {
-  const { authUser, logout } = useAuth();
+  const { authUser, logout , notificationCart} = useAuth();
+  // const [noti, setNoti]=useState(false)
+  
+  console.log(notificationCart)
+
+  // useEffect( ()=>{
+  //   axios.get("/verifi/getcart")
+  //   .then(res => {
+  //     console.log(res.data)
+  //     if(res.data.length > 0){
+  //       setNoti(true)
+  //     }
+  //   }).catch( err => console.log(err))
+
+  // },[])
+ 
 
   return (
     <header className=" flex h-12 gap-5 p-4 justify-between items-center bg-white top-0">
@@ -24,13 +42,15 @@ export default function Header() {
         )}
         {authUser ? (
           <Link to="/profile">
-            <img src="../../public/icons8-user-48.png" alt="" />
+            <img   src="../../public/icons8-user-48.png" alt="" />
           </Link>
         ) : (
           <Link to="/signup">SignUp</Link>
         )}
 
         <Link to="/cart">
+        {notificationCart ? <span className=" absolute right-30 p-1 rounded-lg bg-red-600"></span> : ""}
+        {/* {noti ? <span className=" absolute right-30 p-1 rounded-lg bg-red-600"></span> : ""} */}
           <img src="../../public/icons8-cart-48.png" alt="" />
         </Link>
         {authUser ? (
