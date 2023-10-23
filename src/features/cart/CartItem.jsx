@@ -2,45 +2,68 @@ import { useEffect, useState } from "react";
 import axios from "../../config/axios";
 import Cartshow from "./Cartshow";
 import Carttotal from "./Carttotal";
+import { toast } from "react-toastify";
+import { useAuth } from "../../hooks/use-Auth";
 
 export default function CartItem() {
-  const [data, setdata] = useState([]);
+  const [data, setData] = useState([]);
+  const {setNotificationCart}=useAuth()
   // const [totalPrice ,setTotalPrice]=useState([])
 
-  // const [among,setAmong]=useState({
-  //   quantity : "",
-  //   price : ""
-  // })
+  const [among,setAmong]=useState([])
 
-  // const handleChangeAmong =(event)=>{
-  //   setAmong({...among, ...{[event.target.name] : event.target.value} } )
-  // }
-  // const sumPrice =()=>{
-  //       among.quantity * among.price
-  // }
+  const handleChangeAmong =(event)=>{
+    const obj = {[event.target.name] : event.target.value,price:el.products.price ,id :el.products.id }
+    console.log(obj)
+    setAmong([obj,...among])
+    
+  }
+ const deleteItemCart =async (itemId)=>{
+  try {
+      const response = await axios.delete(`/verifi/delete/${itemId}`)
+      console.log(response)
+       setData(data.filter( el => el.id !== response.data.cartTargat.id))
+       toast("Delete")
+       if(data.length === 0){
+        console.log("++++++++++")
+        setNotificationCart(false)
+       }
+  } catch (err) {
+    console.log(err)
+  }
+ }
 
+
+   console.log(among)
   useEffect(() => {
     axios("verifi/getcart")
-      .then((res) => setdata(res.data))
+      .then((res) => setData(res.data))
       .catch((err) => console.log(err));
   }, []);
   
-  console.log(data)
+  
+  if(data.length === 0){
+    console.log("++++++++++")
+    setNotificationCart(false)
+   }
   return (
     
       <div>
         
         {data.map( (el,index) =>(
-          <Cartshow el={el} key={index}/>
-    //       <div>
+          <Cartshow el={el} key={index} handleChangeAmong={handleChangeAmong} deleteItemCart={deleteItemCart}/>
+    //       <div key={index}>
       
-    //   <div className=" h-1/3 w-1/2 border shadow-lg rounded-lg p-5 min-h-min flex gap-5  ">
+    //   <div className=" h-1/3 w-1/2 border shadow-lg rounded-lg p-5 min-h-min flex gap-5  " >
+      
     //     <div>
+        
     //       <img className=" rounded-lg h-36 w-60 " src={el.products.mainImage} alt="" />
     //     </div>
 
     //     <div className=" flex flex-col ">
-    //       <span>product name :{el.products.name} </span>
+        
+    //       <span>{el.products.name} </span>
     //       <span>Product id :{el.products.id}</span>
     //       <span>Size :{el.size}</span>
     //       <span>pice : {el.products.price}</span>
@@ -60,6 +83,7 @@ export default function CartItem() {
     //         <option value="11">11</option>
     //         <option value="12">12</option>
     //       </select>
+    //      <span className=" cursor-pointer">Delete</span>
     //     </div>
     //   </div>
     // </div>

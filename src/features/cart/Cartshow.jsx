@@ -1,20 +1,30 @@
 import { useState } from "react";
 import Carttotal from "./Carttotal";
 import { useAuth } from "../../hooks/use-Auth";
+import { toast } from "react-toastify";
 
-export default function Cartshow( { el  } ) {
-      const { setShowCart }=useAuth()
-      const [totalPrice ,setTotalPrice]=useState([])
-      const [among,setAmong]=useState([])
+export default function Cartshow( { el ,handleChangeAmong ,deleteItemCart} ) {
+  // console.log("element",el)
+  // console.log("handleAmong",handleChangeAmong)
+  // console.log("delete",deleteItemCart)
+
+ 
       
-      const handleChangeAmong =(event)=>{
-        const arr =[]
-        arr.push({[event.target.name] : event.target.value ,price:el.products.price})
-        setAmong([arr,...among])
-        
-      }
+  const handleClickDelete =()=>{
+    deleteItemCart(el.products.id)
+  }
+      // const { setShowCart }=useAuth()
+      // const [totalPrice ,setTotalPrice]=useState([])
+      // const [among,setAmong]=useState([])
       
-      const sumPrice =()=> among.quantity * among.price
+      // const handleChangeAmong =(event)=>{
+      //   const obj = {[event.target.name] : event.target.value ,price:el.products.price ,id :el.products.id}
+      //   console.log(obj)
+      //   setAmong([obj,...among])
+      //   // setShowCart(among)
+      // }
+      
+      // const sumPrice =()=> among.quantity * among.price
 
       // console.log("total :",totalPrice)
       // console.log(among[0].quantity.length)
@@ -22,7 +32,8 @@ export default function Cartshow( { el  } ) {
       //   console.log("++++++")
       //   //  setTotalPrice(sumPrice)
       // }
-      console.log(among)
+      // console.log(among)
+      
   return (
     <div>
       
@@ -52,7 +63,9 @@ export default function Cartshow( { el  } ) {
             <option value="11">11</option>
             <option value="12">12</option>
           </select>
+          <span className=" cursor-pointer bg-red-300 p-1 w-fit" onClick={handleClickDelete}>Delete</span>
         </div>
+        
       </div>
     </div>
   );
