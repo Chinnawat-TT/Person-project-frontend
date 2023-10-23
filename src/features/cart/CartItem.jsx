@@ -10,48 +10,57 @@ export default function CartItem() {
   const {setNotificationCart}=useAuth()
   // const [totalPrice ,setTotalPrice]=useState([])
 
-  const [among,setAmong]=useState([])
+  // const [among,setAmong]=useState([])
 
-  const handleChangeAmong =(event)=>{
-    const obj = {[event.target.name] : event.target.value,price:el.products.price ,id :el.products.id }
-    console.log(obj)
-    setAmong([obj,...among])
+  // const handleChangeAmong =(event)=>{
+  //   const obj = {[event.target.name] : event.target.value,price:el.products.price ,id :el.products.id }
+  //   console.log(obj)
+  //   setAmong([obj,...among])
     
-  }
+  // }
+
  const deleteItemCart =async (itemId)=>{
   try {
       const response = await axios.delete(`/verifi/delete/${itemId}`)
       console.log(response)
        setData(data.filter( el => el.id !== response.data.cartTargat.id))
        toast("Delete")
-       if(data.length === 0){
-        console.log("++++++++++")
-        setNotificationCart(false)
-       }
   } catch (err) {
     console.log(err)
   }
  }
 
+ const sumPrice = (among) =>{
+  return among.reduce( (acc,curr)=>{
+    let total = curr.quantity * curr.price
+    acc += total
+    return acc
+  },0)
+ }
 
-   console.log(among)
+
+   
   useEffect(() => {
     axios("verifi/getcart")
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
   }, []);
   
+ 
   
-  if(data.length === 0){
-    console.log("++++++++++")
+   if(data.length > 0){
+    
+    setNotificationCart(true)
+   } else {
     setNotificationCart(false)
    }
+
   return (
     
       <div>
         
         {data.map( (el,index) =>(
-          <Cartshow el={el} key={index} handleChangeAmong={handleChangeAmong} deleteItemCart={deleteItemCart}/>
+          <Cartshow el={el} key={index} deleteItemCart={deleteItemCart} sumPrice={sumPrice} />
     //       <div key={index}>
       
     //   <div className=" h-1/3 w-1/2 border shadow-lg rounded-lg p-5 min-h-min flex gap-5  " >

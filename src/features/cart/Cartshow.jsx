@@ -2,17 +2,32 @@ import { useState } from "react";
 import Carttotal from "./Carttotal";
 import { useAuth } from "../../hooks/use-Auth";
 import { toast } from "react-toastify";
+import CartItem from "./CartItem";
 
-export default function Cartshow( { el ,handleChangeAmong ,deleteItemCart} ) {
-  // console.log("element",el)
-  // console.log("handleAmong",handleChangeAmong)
+export default function Cartshow( { el ,deleteItemCart,sumPrice} ) {
+  console.log("element",el)
+  
   // console.log("delete",deleteItemCart)
-
- 
+  const [among,setAmong]=useState([])
+  // const [total,setTotal]=useState([])
       
   const handleClickDelete =()=>{
     deleteItemCart(el.products.id)
   }
+  const result=sumPrice(among)
+  
+  
+
+  const handleChangeAmong =(event)=>{
+    const obj = {[event.target.name] : event.target.value,price:el.products.price ,id :el.products.id }
+    
+    setAmong([...among,obj])
+   
+  }
+   
+  
+   
+  
       // const { setShowCart }=useAuth()
       // const [totalPrice ,setTotalPrice]=useState([])
       // const [among,setAmong]=useState([])
@@ -43,7 +58,7 @@ export default function Cartshow( { el ,handleChangeAmong ,deleteItemCart} ) {
         </div>
 
         <div className=" flex flex-col ">
-          <span>product name :{el.products.name} </span>
+          <span>{el.products.name} </span>
           <span>Product id :{el.products.id}</span>
           <span>Size :{el.size}</span>
           <span>pice : {el.products.price}</span>
@@ -63,6 +78,7 @@ export default function Cartshow( { el ,handleChangeAmong ,deleteItemCart} ) {
             <option value="11">11</option>
             <option value="12">12</option>
           </select>
+          <span className=" p-1 text-red-400">sub total : {result}</span>
           <span className=" cursor-pointer bg-red-300 p-1 w-fit" onClick={handleClickDelete}>Delete</span>
         </div>
         

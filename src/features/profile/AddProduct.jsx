@@ -6,6 +6,8 @@ useNavigate
 export default function AddProduct() {
   const [fileMainImage, setFileMainImage] = useState(null);
   const [fileSubImage, setFileSubImage] = useState([]);
+  const [loading,setLoading]= useState(false)
+  const navigate = useNavigate()
   const [input, setInput] = useState({
     name: "",
     categories: "",
@@ -13,8 +15,6 @@ export default function AddProduct() {
     description: "",
     type: "",
   });
-  const [loading,setLoading]= useState(false)
-  const navigate = useNavigate()
   const createProduct = async (data) => {
     await axios.post("/admin", data);
   };
