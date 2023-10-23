@@ -1,7 +1,10 @@
+import CartItem from "../features/cart/CartItem";
 
 
 export default function CartPage() {
   return (
-    <div>CartPage</div>
+    <div>
+      <CartItem/>
+    </div>
   )
 }

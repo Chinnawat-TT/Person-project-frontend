@@ -12,6 +12,8 @@ export default function AuthContextProvider({ children }) {
   const [authUser, setAuthUser] = useState(null);
   const [intialLoading, setIntialLoading] = useState(true);
   const [notificationCart, setNotificationCart] = useState(false);
+  const [showCart,setShowCart]=useState([])
+
   useEffect(
     () => {
       try {
@@ -33,31 +35,10 @@ export default function AuthContextProvider({ children }) {
         }, 1000);
       }
     },
-
-    //   if( getAccessToken()){
-    //    axios.get('/verifi/me').then( (res)=>{
-    //       setAuthUser(res.data.user)
-    //     }).finally( ()=>{
-    //       setTimeout(() => {
-    //         setIntialLoading(false)
-    //       }, 1000);
-    //     })
-    //   } else {
-    //     setIntialLoading(false)
-    //   }
-
-    //  axios.get("/verifi/getcart")
-    //   .then(res => {
-    //     console.log(res.data)
-    //     if(res.data.length > 0){
-    //       setNotificationCart(true)
-    //     }
-    //   }).catch( err => console.log(err))
-
     []
   );
-  
-    console.log(notificationCart)
+
+    console.log(showCart)
 
   const signup = async (registerObject) => {
     const response = await axios.post("/verifi/signup", registerObject);
@@ -90,7 +71,8 @@ export default function AuthContextProvider({ children }) {
         logout,
         intialLoading,
         notificationCart,
-        setNotificationCart
+        setNotificationCart,
+        setShowCart
       }}
     >
       {children}

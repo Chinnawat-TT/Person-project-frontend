@@ -8,7 +8,7 @@ export default function TableAllProduct() {
 
   const deleteProduct = async(productId)=>{
     try {
-      console.log("clickdelete")
+     
       await axios.delete(`/admin/${productId}`)
       setData(data.filter( el => el.id !== productId))
     } catch (err) {
@@ -18,8 +18,7 @@ export default function TableAllProduct() {
 
   const editDetailProduct = async (productId,body)=>{
     try {
-      console.log("click edit detail product")
-      console.log(data)
+      
       await axios.patch(`/admin/detail/${productId}`,body).then(res => setData(res.data)).catch( err => console.log(err))
       
     } catch (err) {
@@ -38,9 +37,9 @@ export default function TableAllProduct() {
   console.log(data)
   
   return (
-    <div className=" gap-5">
+    <div>
 
-      <table className="table-auto border-collapse border-spacing-2">
+      <table>
         <thead>
           <tr >
             <th>Product ID</th>
@@ -52,12 +51,13 @@ export default function TableAllProduct() {
             <th>Image</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
+        <tbody> 
           {data?.map( (el)=>(
+          <tr >
                 <Table key={el.id} productobj={el} deleteProduct={deleteProduct} editDetailProduct={editDetailProduct}/>
-              ))}
+
           </tr>
+              ))}
         </tbody>
       </table>
       
