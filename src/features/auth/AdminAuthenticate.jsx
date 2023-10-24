@@ -2,7 +2,7 @@
 import { useAuth } from '../../hooks/use-Auth'
 import { Navigate } from "react-router-dom";
 
-export default function AdminAuthenticate() {
+export default function AdminAuthenticate({children}) {
     const { authUser }=useAuth()
 
     console.log(authUser)

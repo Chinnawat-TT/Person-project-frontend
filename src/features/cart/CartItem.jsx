@@ -4,10 +4,13 @@ import Cartshow from "./Cartshow";
 import Carttotal from "./Carttotal";
 import { toast } from "react-toastify";
 import { useAuth } from "../../hooks/use-Auth";
+import { useCart } from "../../hooks/use-Cart";
 
 export default function CartItem() {
   const [data, setData] = useState([]);
-  const {setNotificationCart, totalCart , setTotalCart ,checkOutCart}=useAuth()
+  const {setNotificationCart, totalCart , setTotalCart }=useAuth()
+  const {newAmong}=useCart()
+  console.log(newAmong)
   // const [totalPrice ,setTotalPrice]=useState([])
 
   // const [among,setAmong]=useState([])
@@ -18,7 +21,28 @@ export default function CartItem() {
   //   setAmong([obj,...among])
     
   // }
-  
+  const handleCheckOut =()=>{
+    console.log("++++++++++++++++++++")
+    console.log(totalCart)
+    console.log(data)
+    const resultArray = [];
+    data.forEach(item => {
+      const existingItem = resultArray.find(result => result.productId === item.productId && result.size === item.size);
+    
+      if (existingItem) {
+        existingItem.quantity += 1;
+        existingItem.price += item.products.price;
+      } else {
+        resultArray.push({
+          productId: item.productId,
+          size: item.size,
+          price: item.products.price,
+          quantity: 1
+        });
+      }
+    });
+    console.log(resultArray)
+  }
 
  const deleteItemCart =async (itemId)=>{
   try {
@@ -103,7 +127,7 @@ export default function CartItem() {
     // </div>
         ))}
         
-        <Carttotal totalCart={totalCart} />
+        <Carttotal totalCart={totalCart} handleCheckOut={handleCheckOut}/>
       </div>
       
     

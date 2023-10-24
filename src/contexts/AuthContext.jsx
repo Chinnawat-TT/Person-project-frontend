@@ -13,6 +13,7 @@ export default function AuthContextProvider({ children }) {
   const [intialLoading, setIntialLoading] = useState(true);
   const [notificationCart, setNotificationCart] = useState(false);
   const [totalCart,setTotalCart]=useState(0)
+  const [newAmong ,setNewAmong]=useState({})
 
   useEffect(
     () => {
@@ -61,20 +62,7 @@ export default function AuthContextProvider({ children }) {
     setNotificationCart(false);
   };
 
-  const checkOutCart = async (data,totalPrice,productsQuantiny)=> {
-    try {
-      const objtotal ={}
-      objtotal.totalPrice = totalPrice
-      console.log(objPrice)
-      objtotal.productsQuantiny = productsQuantiny
-      console.log(objPrice)
-      console.log(data)
-      const response = await axios.post("/verifi/checkout",data)
-      console.log(response)
-    } catch (err) {
-      console.log(err)
-    }
-   }
+  
 
   console.log(authUser);
   return (
@@ -88,7 +76,9 @@ export default function AuthContextProvider({ children }) {
         notificationCart,
         setNotificationCart,
         setTotalCart,
-        totalCart
+        totalCart,
+        
+
       }}
     >
       {children}

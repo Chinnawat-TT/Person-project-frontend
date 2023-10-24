@@ -1,9 +1,7 @@
 
 
-export default function Carttotal({totalCart,checkOutCart}) {
-  const handleCheckOut =()=>{
-    checkOutCart(totalCart)
-  }
+export default function Carttotal({totalCart,handleCheckOut}) {
+ 
   return (
     <div className=" bg-blue-500">
         <span>ORDER TOTAL :{totalCart}</span>
