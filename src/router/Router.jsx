@@ -41,7 +41,10 @@ const router = createBrowserRouter([
         path : "/",    
         element : (
 
-                    <AdminLayout/>
+                    <AdminAuthenticate>
+
+                        <AdminLayout/>
+                    </AdminAuthenticate>
 
         ),
         children :[

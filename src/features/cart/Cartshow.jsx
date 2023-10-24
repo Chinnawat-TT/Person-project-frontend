@@ -4,24 +4,28 @@ import { useAuth } from "../../hooks/use-Auth";
 import { toast } from "react-toastify";
 import CartItem from "./CartItem";
 
-export default function Cartshow( { el ,deleteItemCart,sumPrice} ) {
-  console.log("element",el)
+export default function Cartshow( { el ,deleteItemCart,setTotalCart} ) {
+  // console.log("element",el)
   
   // console.log("delete",deleteItemCart)
   const [among,setAmong]=useState([])
+  const [result,setResult]=useState(0)
   // const [total,setTotal]=useState([])
       
   const handleClickDelete =()=>{
     deleteItemCart(el.products.id)
   }
-  const result=sumPrice(among)
+  // const result=sumPrice(among)
   
   
 
-  const handleChangeAmong =(event)=>{
+  const handleChangeAmong = async(event)=>{
     const obj = {[event.target.name] : event.target.value,price:el.products.price ,id :el.products.id }
-    
+    const sumPrice = (el.products.price * event.target.value)
+    setResult(sumPrice)
+    setTotalCart(prev=>prev-result+sumPrice)
     setAmong([...among,obj])
+
    
   }
    

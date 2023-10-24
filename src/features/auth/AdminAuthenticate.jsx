@@ -6,7 +6,7 @@ export default function AdminAuthenticate() {
     const { authUser }=useAuth()
 
     console.log(authUser)
-    if ( authUser.isAdmin === true ){
+    if ( authUser.isAdmin === false ){
         return <Navigate to= "/" />
            }
            return children

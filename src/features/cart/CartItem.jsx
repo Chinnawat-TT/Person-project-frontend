@@ -7,7 +7,7 @@ import { useAuth } from "../../hooks/use-Auth";
 
 export default function CartItem() {
   const [data, setData] = useState([]);
-  const {setNotificationCart}=useAuth()
+  const {setNotificationCart, totalCart , setTotalCart ,checkOutCart}=useAuth()
   // const [totalPrice ,setTotalPrice]=useState([])
 
   // const [among,setAmong]=useState([])
@@ -18,6 +18,7 @@ export default function CartItem() {
   //   setAmong([obj,...among])
     
   // }
+  
 
  const deleteItemCart =async (itemId)=>{
   try {
@@ -30,13 +31,17 @@ export default function CartItem() {
   }
  }
 
- const sumPrice = (among) =>{
-  return among.reduce( (acc,curr)=>{
-    let total = curr.quantity * curr.price
-    acc += total
-    return acc
-  },0)
- }
+ 
+
+//  const sumPrice = (among) =>{
+//   const result= among.reduce( (acc,curr)=>{
+//     let total = curr.quantity * curr.price
+//     acc += total
+//     return acc
+//   },0)
+
+//   return result
+//  }
 
 
    
@@ -60,7 +65,7 @@ export default function CartItem() {
       <div>
         
         {data.map( (el,index) =>(
-          <Cartshow el={el} key={index} deleteItemCart={deleteItemCart} sumPrice={sumPrice} />
+          <Cartshow el={el} key={index} deleteItemCart={deleteItemCart}  setTotalCart={setTotalCart} />
     //       <div key={index}>
       
     //   <div className=" h-1/3 w-1/2 border shadow-lg rounded-lg p-5 min-h-min flex gap-5  " >
@@ -98,7 +103,7 @@ export default function CartItem() {
     // </div>
         ))}
         
-        <Carttotal/>
+        <Carttotal totalCart={totalCart} />
       </div>
       
     
