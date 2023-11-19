@@ -28,8 +28,8 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: (
+          
           <CartContextProvider>
-
               <CartPage />
           </CartContextProvider>
           
@@ -45,22 +45,16 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/",
+    path: "",
     element: (
       <AdminAuthenticate>
         <AdminLayout />
       </AdminAuthenticate>
     ),
     children: [
-      { path: "", element: <HomePage /> },
-      { path: "/login", element: <LoginPage /> },
-      { path: "/men", element: <MenPage /> },
-      { path: "/women", element: <WomenPage /> },
-      { path: "/kids", element: <KidsPage /> },
       { path: "/admin", element: <AdminPage /> },
       { path: "/admin/addproduct", element: <AddProduct /> },
       { path: "/admin/allproduct", element: <AdminAllproduct /> },
-      { path: "/men/saleitem/:itemId", element: <SaleCardItem /> },
     ],
   },
 ]);

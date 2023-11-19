@@ -5,12 +5,22 @@ import Carttotal from "./Carttotal";
 import { toast } from "react-toastify";
 import { useAuth } from "../../hooks/use-Auth";
 import { useCart } from "../../hooks/use-Cart";
+import { useForm } from 'react-hook-form';
 
 export default function CartItem() {
   const [data, setData] = useState([]);
   const {setNotificationCart, totalCart , setTotalCart }=useAuth()
-  const {newAmong}=useCart()
-  console.log(newAmong)
+  const {newAmong ,setNewAmong ,setNewPrice,newPrice,checkOutCart}=useCart()
+  setNewPrice(totalCart)
+  console.log("newPrice",newPrice)
+  console.log("newAmong",newAmong)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  // console.log("data",data)
   // const [totalPrice ,setTotalPrice]=useState([])
 
   // const [among,setAmong]=useState([])
@@ -21,27 +31,45 @@ export default function CartItem() {
   //   setAmong([obj,...among])
     
   // }
+  
   const handleCheckOut =()=>{
     console.log("++++++++++++++++++++")
-    console.log(totalCart)
-    console.log(data)
-    const resultArray = [];
-    data.forEach(item => {
-      const existingItem = resultArray.find(result => result.productId === item.productId && result.size === item.size);
+    let size = data.map(el => el.size)
+    console.log("size length",size.length)
+    console.log("total",totalCart)
+    console.log("new",newPrice)
+    console.log("dataAmong",newAmong?.map(el=> el))
+    const input ={}
+    input.item =newAmong
+    input.totalPrice=newPrice
+
+    if(size.length >1) {
+
+      for(let i = 0 ; i<size.length; i++){
+        input.item[i].size = size[i]
+      }    
+    }
+
+   console.log("newdata",input)
+
+   checkOutCart(input)
+    // const resultArray = [];
+    // data.forEach(item => {
+    //   const existingItem = resultArray.find(result => result.productId === item.productId && result.size === item.size);
     
-      if (existingItem) {
-        existingItem.quantity += 1;
-        existingItem.price += item.products.price;
-      } else {
-        resultArray.push({
-          productId: item.productId,
-          size: item.size,
-          price: item.products.price,
-          quantity: 1
-        });
-      }
-    });
-    console.log(resultArray)
+    //   if (existingItem) {
+    //     existingItem.quantity += 1;
+    //     existingItem.price += item.products.price;
+    //   } else {
+    //     resultArray.push({
+    //       productId: item.productId,
+    //       size: item.size,
+    //       price: item.products.price,
+    //       quantity: 1
+    //     });
+    //   }
+    // });
+    // console.log(resultArray)
   }
 
  const deleteItemCart =async (itemId)=>{
@@ -49,7 +77,7 @@ export default function CartItem() {
       const response = await axios.delete(`/verifi/delete/${itemId}`)
       console.log(response)
        setData(data.filter( el => el.id !== response.data.cartTargat.id))
-       toast("Delete")
+       toast.error("Delete")
   } catch (err) {
     console.log(err)
   }
@@ -89,7 +117,7 @@ export default function CartItem() {
       <div>
         
         {data.map( (el,index) =>(
-          <Cartshow el={el} key={index} deleteItemCart={deleteItemCart}  setTotalCart={setTotalCart} />
+          <Cartshow el={el} key={index} deleteItemCart={deleteItemCart}  setTotalCart={setTotalCart} setNewAmong={setNewAmong} setNewPrice={setNewPrice} newAmong={newAmong}/>
     //       <div key={index}>
       
     //   <div className=" h-1/3 w-1/2 border shadow-lg rounded-lg p-5 min-h-min flex gap-5  " >
@@ -127,7 +155,7 @@ export default function CartItem() {
     // </div>
         ))}
         
-        <Carttotal totalCart={totalCart} handleCheckOut={handleCheckOut}/>
+        <Carttotal totalCart={totalCart} handleCheckOut={handleCheckOut} setNewPrice={setNewPrice} handleSubmit={handleSubmit}/>
       </div>
       
     

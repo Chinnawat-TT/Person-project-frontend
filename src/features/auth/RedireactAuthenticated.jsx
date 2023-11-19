@@ -4,7 +4,8 @@ import { useAuth } from "../../hooks/use-Auth"
 
 export default function RedireactAuthenticated({ children }) {
     const { authUser }=useAuth()
-    if(authUser){
+    console.log("RedireactAuthenticated =",authUser)
+    if(!authUser){
         return <Navigate to=" /"/>
     }
   return children

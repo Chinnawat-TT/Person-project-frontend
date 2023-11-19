@@ -1,34 +1,47 @@
 import { useState } from "react";
+// import { useForm } from 'react-hook-form';
 import Carttotal from "./Carttotal";
 import { useAuth } from "../../hooks/use-Auth";
 import { toast } from "react-toastify";
 import CartItem from "./CartItem";
 
-export default function Cartshow( { el ,deleteItemCart,setTotalCart} ) {
+export default function Cartshow( { el ,deleteItemCart,setTotalCart,setNewAmong,register,newAmong} ) {
   // console.log("element",el)
   
   // console.log("delete",deleteItemCart)
-  const [among,setAmong]=useState([])
+  // const [among,setAmong]=useState([])
   const [result,setResult]=useState(0)
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm();
   // const [total,setTotal]=useState([])
-      
+  // console.log("among",among)
   const handleClickDelete =()=>{
     deleteItemCart(el.products.id)
+
   }
   // const result=sumPrice(among)
   
   
 
   const handleChangeAmong = async(event)=>{
-    const obj = {[event.target.name] : event.target.value,price:el.products.price ,id :el.products.id }
+    const obj = {
+      [event.target.name] : Number(event.target.value),
+      price:el.products.price * event.target.value,
+      productId :el.products.id }
     const sumPrice = (el.products.price * event.target.value)
     setResult(sumPrice)
     setTotalCart(prev=>prev-result+sumPrice)
-    setAmong([...among,obj])
+    
+    // const newObj = among.filter((el) => console.log("el",el));
+    // console.log(newObj)
+    // setAmong((prev) => [...prev, obj])
+    setNewAmong((prev) =>[...prev,obj])
 
    
   }
-   
   
    
   
@@ -67,7 +80,15 @@ export default function Cartshow( { el ,deleteItemCart,setTotalCart} ) {
           <span>Size :{el.size}</span>
           <span>pice : {el.products.price}</span>
           <span>quantity</span>
-          <select name="quantity" id="size-select" className=" w-40" onChange={handleChangeAmong}>
+          <select 
+          name="quantiny" 
+          id="size-select" 
+          className=" w-40" 
+          onChange={handleChangeAmong}
+          // {...register("quantiny" , {
+          //   required: "กรุณาเลือกจำนวนสินค้า",
+          // })}
+          >
             <option value="">You have selected</option>
             <option value="1">1</option>
             <option value="2">2</option>

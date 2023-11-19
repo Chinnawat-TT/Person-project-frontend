@@ -37,9 +37,7 @@ export default function AdminHeader() {
           </div>
           </Link>
         ) : (
-          <Link to="/login">
-            <img src="../../public/icons8-user-48.png" alt="" />
-          </Link>
+          ""
         )}
       </div>
     </header>

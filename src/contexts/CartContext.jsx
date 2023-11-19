@@ -1,29 +1,24 @@
-import { createContext, useState } from "react"
+import axios from "../config/axios";
+import { createContext, useState } from "react";
 
-export const CartContext = createContext()
+export const CartContext = createContext();
 
-export default function CartContextProvider({children}) {
+export default function CartContextProvider({ children }) {
+  const [newAmong, setNewAmong] = useState([]); 
+  const [newPrice, setNewPrice] = useState({});
 
-    const [newAmong ,setNewAmong]=useState({name:555})
-    const [newPrice ,setNewPrice]=useState({})
-
-    const checkOutCart = async (data,totalPrice)=> {
-        try {
-          const objtotal ={}
-        
-          const response = await axios.post("/verifi/checkout",data)
-          console.log(response)
-        } catch (err) {
-          console.log(err)
-        }
-       }
+  const checkOutCart = async (data) => {
+    try {
+      const response = await axios.post("/verifi/checkout", data);
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
-    <CartContext.Provider
-    value={{setNewAmong,newAmong }}
+    <CartContext.Provider value={{ setNewAmong, newAmong ,setNewPrice,newPrice ,checkOutCart}}
     >
-        
-    {children}
+      {children}
     </CartContext.Provider>
-  )
+  );
 }
-

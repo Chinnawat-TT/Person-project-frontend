@@ -13,11 +13,12 @@ export default function SaleCardItem() {
   const Navigate = useNavigate();
   console.log(show);
 
+
   const addToCart = async (data) => {
     await axios.post(`/verifi/addtocart`, data).then((res) => {
       console.log(res)
       setNotificationCart(true)
-      toast("add to cart");
+      toast.success("add to cart");
     });
   };
 
@@ -27,7 +28,7 @@ export default function SaleCardItem() {
       .then((res) => setShow(res.data))
       .catch((err) => console.log(err));
   }, []);
-  //   const{item ,subImage}=show
+
   console.log(show);
 
   return (
