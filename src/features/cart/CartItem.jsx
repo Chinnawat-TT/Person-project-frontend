@@ -11,15 +11,15 @@ export default function CartItem() {
   const [data, setData] = useState([]);
   const {setNotificationCart, totalCart , setTotalCart }=useAuth()
   const {newAmong ,setNewAmong ,setNewPrice,newPrice,checkOutCart}=useCart()
-  setNewPrice(totalCart)
+  // setNewPrice(totalCart)
   console.log("newPrice",newPrice)
   console.log("newAmong",newAmong)
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm();
   // console.log("data",data)
   // const [totalPrice ,setTotalPrice]=useState([])
 
@@ -35,24 +35,25 @@ export default function CartItem() {
   const handleCheckOut =()=>{
     console.log("++++++++++++++++++++")
     let size = data.map(el => el.size)
-    console.log("size length",size.length)
-    console.log("total",totalCart)
-    console.log("new",newPrice)
-    console.log("dataAmong",newAmong?.map(el=> el))
+    console.log("sizelength",size.length)
+    console.log("sizeMap",size)
+
     const input ={}
+
     input.item =newAmong
-    input.totalPrice=newPrice
-
-    if(size.length >1) {
-
-      for(let i = 0 ; i<size.length; i++){
+    input.totalPrice=totalCart
+    if(size.length > 1) {
+      console.log("Hello loop")
+      for(let i = 0 ; i < size.length; i++){
         input.item[i].size = size[i]
       }    
+    } else {
+      newAmong[0].size =size[0]
     }
-
+    
    console.log("newdata",input)
-
    checkOutCart(input)
+   setTotalCart(0)
     // const resultArray = [];
     // data.forEach(item => {
     //   const existingItem = resultArray.find(result => result.productId === item.productId && result.size === item.size);
@@ -101,16 +102,16 @@ export default function CartItem() {
     axios("verifi/getcart")
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
+      if(data.length > 0){
+        setNotificationCart(true)
+       } else {
+        setNotificationCart(false)
+       }
   }, []);
   
  
   
-   if(data.length > 0){
-    
-    setNotificationCart(true)
-   } else {
-    setNotificationCart(false)
-   }
+  
 
   return (
     
@@ -155,7 +156,7 @@ export default function CartItem() {
     // </div>
         ))}
         
-        <Carttotal totalCart={totalCart} handleCheckOut={handleCheckOut} setNewPrice={setNewPrice} handleSubmit={handleSubmit}/>
+        <Carttotal totalCart={totalCart} handleCheckOut={handleCheckOut}  />
       </div>
       
     

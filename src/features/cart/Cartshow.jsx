@@ -5,7 +5,7 @@ import { useAuth } from "../../hooks/use-Auth";
 import { toast } from "react-toastify";
 import CartItem from "./CartItem";
 
-export default function Cartshow( { el ,deleteItemCart,setTotalCart,setNewAmong,register,newAmong} ) {
+export default function Cartshow( { el ,deleteItemCart,setTotalCart,setNewAmong,register,newAmong,setNewPrice} ) {
   // console.log("element",el)
   
   // console.log("delete",deleteItemCart)

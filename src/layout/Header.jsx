@@ -8,7 +8,7 @@ export default function Header() {
   const { authUser, logout , notificationCart} = useAuth();
   // const [noti, setNoti]=useState(false)
   
-  console.log(notificationCart)
+  // console.log(notificationCart)
 
   // useEffect( ()=>{
   //   axios.get("/verifi/getcart")

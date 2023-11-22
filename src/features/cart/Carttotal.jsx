@@ -1,11 +1,11 @@
 
 
-export default function Carttotal({totalCart,handleCheckOut,setNewPrice,handleSubmit}) {
+export default function Carttotal({totalCart,handleCheckOut}) {
  
   return (
-    <form className=" bg-blue-500" onSubmit={handleSubmit((data) => console.log("data useform",data))}>
+    <div className=" bg-blue-500" >
         <span>ORDER TOTAL :{totalCart}</span>
         <button className=" p-5 bg-red-400 text-white" onClick={handleCheckOut}>CHECKOUT</button>
-    </form>
+    </div>
   )
 }
