@@ -11,7 +11,7 @@ export default function SaleCardItem() {
   const { setNotificationCart }=useAuth()
   const [notification, setNotification] = useState(false);
   const Navigate = useNavigate();
-  console.log(show);
+  // console.log(show);
 
 
   const addToCart = async (data) => {
@@ -29,7 +29,7 @@ export default function SaleCardItem() {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(show);
+  // console.log(show);
 
   return (
     <div className="  grid grid-cols-2">

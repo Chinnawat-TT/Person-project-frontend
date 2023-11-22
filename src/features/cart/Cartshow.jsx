@@ -25,7 +25,7 @@ export default function Cartshow( { el ,deleteItemCart,setTotalCart,setNewAmong,
   // const result=sumPrice(among)
   
   
-
+  
   const handleChangeAmong = async(event)=>{
     const obj = {
       [event.target.name] : Number(event.target.value),
@@ -35,11 +35,21 @@ export default function Cartshow( { el ,deleteItemCart,setTotalCart,setNewAmong,
     setResult(sumPrice)
     setTotalCart(prev=>prev-result+sumPrice)
     
-    // const newObj = among.filter((el) => console.log("el",el));
-    // console.log(newObj)
-    // setAmong((prev) => [...prev, obj])
-    setNewAmong((prev) =>[...prev,obj])
+    
+    const findIndex = newAmong.findIndex(element => element.productId === el.products.id);
 
+if (findIndex >= 0) {
+    // หากพบข้อมูลที่มี productId เดียวกัน ให้อัปเดตข้อมูล
+    setNewAmong(prev => {
+        const updatedNewAmong = [...prev];
+        updatedNewAmong[findIndex] = obj;
+        return updatedNewAmong;
+    });
+    console.log("okja");
+} else {
+    // ถ้าไม่พบข้อมูลที่มี productId เดียวกัน ให้เพิ่มข้อมูลใหม่
+    setNewAmong(prev => [...prev, obj]);
+}
    
   }
   
