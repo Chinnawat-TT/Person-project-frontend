@@ -17,6 +17,7 @@ export default function AddProduct() {
   });
   const createProduct = async (data) => {
     await axios.post("/admin", data);
+    
   };
 
   //   const handleChangeImage = (event) => {

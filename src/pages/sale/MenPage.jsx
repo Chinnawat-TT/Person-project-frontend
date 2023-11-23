@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function MenPage() {
   const [show, setShow] = useState([]);
-  
+ 
   useEffect(() => {
     axios
       .get("/sale/men/")

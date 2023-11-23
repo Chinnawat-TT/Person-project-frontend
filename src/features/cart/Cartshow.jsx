@@ -25,6 +25,26 @@ export default function Cartshow( { el ,deleteItemCart,setTotalCart,setNewAmong,
   // const result=sumPrice(among)
   
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   const handleChangeAmong = async(event)=>{
     const obj = {

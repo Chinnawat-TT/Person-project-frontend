@@ -9,12 +9,14 @@ export default function ProfilePage() {
   
   const [user,setUser]=useState({})
   const [order,setOrder]=useState([])
+  const [refresh,setRefresh] = useState(false)
+  
   useEffect(()=>{
     setUser(()=>authUser)
     axios.get("/verifi/getMyOrder").then(res => setOrder(res.data.order)).catch(err=> console.log(err))
-    
-  },[])
+  },[refresh])
   console.log(">>>>>>>>>>>>>",order)
+  
   return (
     <>
     <div>
@@ -30,7 +32,7 @@ export default function ProfilePage() {
     </div>
     {order?.map( (el)=>(
     <div key={el.id}>
-    <MyOrder el={el}/>
+    <MyOrder el={el} order={order} setOrder={setOrder} refresh={refresh}setRefresh = {setRefresh} />
     </div>
 
     ))}
