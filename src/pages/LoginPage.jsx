@@ -54,10 +54,16 @@ export default function LoginPage() {
 
   console.log(authUser)
 
-  if(authUser){
-    return <Navigate to="/"/>
-  }
-  
+  // if(authUser){
+  //   return <Navigate to="/"/>
+  // }
+  useEffect(()=>{
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 350);
+  },[])
+
   return (
     <>
     {loading && <Loading/>}

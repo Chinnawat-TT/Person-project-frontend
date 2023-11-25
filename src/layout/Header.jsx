@@ -42,7 +42,11 @@ export default function Header() {
         )}
         {authUser?.isAdmin ? "" : authUser ? (
           <Link to="/profile">
-            <img   src="../../public/icons8-user-48.png" alt="" />
+            <div className="cursor-pointer  flex justify-center items-center">
+
+            <span className="material-symbols-outlined ">account_circle</span>
+            </div>
+            {/* <img   src="../../public/icons8-user-48.png" alt="" /> */}
           </Link>
         ) : (
           <Link to="/signup">SignUp</Link>
@@ -50,9 +54,12 @@ export default function Header() {
         
         
         <Link to="/cart">
+          <div className="cursor-pointer  flex justify-center items-center">
         {notificationCart ? <span className=" absolute right-30 p-1 rounded-lg bg-red-600"></span> : ""}
         {/* {noti ? <span className=" absolute right-30 p-1 rounded-lg bg-red-600"></span> : ""} */}
-          <img src="../../public/icons8-cart-48.png" alt="" />
+          {/* <img src="../../public/icons8-cart-48.png" alt="" /> */}
+          <span className="material-symbols-outlined">shopping_cart</span>
+          </div>
         </Link>
 
 
@@ -63,13 +70,17 @@ export default function Header() {
             onClick={logout}
           >
             {" "}
-            <span>logout</span>
+            {/* <span>logout</span> */}
             <span className="material-symbols-outlined">logout</span>{" "}
           </div>
           </Link>
         ) : (
           <Link to="/login">
-            <img src="../../public/icons8-user-48.png" alt="" />
+            {/* <img src="../../public/icons8-user-48.png" alt="" /> */}
+            <div className="cursor-pointer  flex justify-center items-center">
+              
+            <span className="material-symbols-outlined ">account_circle</span>
+            </div>
           </Link>
         )}
       </div>

@@ -17,6 +17,7 @@ import AdminAuthenticate from "../features/auth/AdminAuthenticate";
 import AdminAllproduct from "../pages/admin/AdminAllProduct";
 import AuthContextProvider from "../contexts/AuthContext";
 import CartContextProvider from "../contexts/CartContext";
+import RedirectLogin from "../features/auth/RedirectLogin";
 
 
 const router = createBrowserRouter([
@@ -36,7 +37,15 @@ const router = createBrowserRouter([
         ),
       },
       { path: "/signup", element: <SignUpPage /> },
-      { path: "/login", element: <LoginPage /> },
+      { 
+        path: "/login",
+         element: 
+         <RedirectLogin>
+
+           <LoginPage />
+          
+         </RedirectLogin>
+         },
       { path: "/men", element: <MenPage /> },
       { path: "/women", element: <WomenPage /> },
       { path: "/kids", element: <KidsPage /> },
