@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Joi from "joi";
 import SignUpInput from "../features/auth/SignUpInput";
 import { useAuth } from "../hooks/use-Auth";
 import { toast } from "react-toastify";
 import InputErrorMessage from "../features/auth/InputErrorMessage";
 import { Navigate } from "react-router-dom";
+import Loading from "../components/Loading";
 
 
 const LoginSchema = Joi.object({
@@ -32,6 +33,7 @@ export default function LoginPage() {
   })
   const [error,setError]=useState({})
   const { login , authUser} =useAuth()
+  const [loading , setLoading] =useState(false)
  
 
   const handleChangeInput = (event) =>{
@@ -54,8 +56,15 @@ export default function LoginPage() {
   if(authUser){
     return <Navigate to="/"/>
   }
-  
+  useEffect(()=>{
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 350);
+  },[])
   return (
+    <>
+    {loading && <Loading/>}
     <div className=" flex  justify-center items-center h-[90vh] " >
       <form onSubmit={handleSubmit}>
         <div>
@@ -89,5 +98,6 @@ export default function LoginPage() {
       </form>
       
     </div>
+    </>
   )
 }

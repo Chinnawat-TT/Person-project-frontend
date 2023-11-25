@@ -3,19 +3,29 @@ import SaleCard from "./Salecard";
 import axios from "../../config/axios";
 
 import { Link } from "react-router-dom";
+import Loading from "../../components/Loading";
 
 export default function MenPage() {
   const [show, setShow] = useState([]);
+  const [loading,setIsLoading] =useState(false)
  
   useEffect(() => {
+    console.log(".......")
+    setIsLoading(true)
     axios
       .get("/sale/men/")
       .then((res) => setShow(res.data))
       .catch((err) => console.log(err))
+      .finally(()=> setTimeout(() => {
+        setIsLoading(false)
+      }, 300)
+      )
   }, []);
   console.log(show);
   
   return (
+    <>
+      {loading && <Loading/>}
     <div className=" flex flex-col md:flex-row gap-4 p-4 w-full justify-center items-center">
       
       {show.map((el, index) => (
@@ -27,5 +37,6 @@ export default function MenPage() {
 
       ))}
     </div>
+    </>
   );
 }

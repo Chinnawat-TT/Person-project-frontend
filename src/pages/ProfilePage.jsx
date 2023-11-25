@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useAuth } from "../hooks/use-Auth"
 import axios from "../config/axios"
 import MyOrder from "../features/profile/MyOrder"
+import Loading from "../components/Loading"
 
 
 export default function ProfilePage() {
@@ -10,15 +11,24 @@ export default function ProfilePage() {
   const [user,setUser]=useState({})
   const [order,setOrder]=useState([])
   const [refresh,setRefresh] = useState(false)
+  const [loading,setLoading] = useState(false)
+
   
   useEffect(()=>{
+    setLoading(true)
     setUser(()=>authUser)
-    axios.get("/verifi/getMyOrder").then(res => setOrder(res.data.order)).catch(err=> console.log(err))
+    axios.get("/verifi/getMyOrder")
+    .then(res => setOrder(res.data.order))
+    .catch(err=> console.log(err))
+    .finally(()=>setTimeout(() => {
+      setLoading(false)
+    }, 350))
   },[refresh])
   console.log(">>>>>>>>>>>>>",order)
   
   return (
     <>
+    {loading && <Loading/>}
     <div>
     <div>
       ProfilePage

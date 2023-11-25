@@ -5,6 +5,7 @@ import {
   getAccessToken,
   removeAccessToken,
 } from "../utils/local-storage";
+import {toast} from "react-toastify"
 
 export const AuthContext = createContext();
 
@@ -51,6 +52,8 @@ export default function AuthContextProvider({ children }) {
     const response = await axios.post("/verifi/login", certificate);
     setAuthUser(response.data.user);
     addAccessToken(response.data.accessToken);
+    
+    toast.success(`YUEMAi👋สวัสดี`)
     if (response.data.findCart.length > 0) {
       setNotificationCart(true);
     }
@@ -60,6 +63,7 @@ export default function AuthContextProvider({ children }) {
     removeAccessToken();
     setAuthUser(null);
     setNotificationCart(false);
+    toast.success(` " ไว้เจอกันใหม่ ขอบคุณที่ใช้บริการ " `)
   };
 
   

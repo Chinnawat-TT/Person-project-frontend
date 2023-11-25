@@ -20,7 +20,7 @@ export default function Header() {
   //   }).catch( err => console.log(err))
 
   // },[])
- 
+ console.log(">>>>>>>>>>>>>>>",authUser)
 
   return (
     <header className=" flex h-12 gap-5 p-4 justify-between items-center bg-white top-0">
@@ -40,19 +40,22 @@ export default function Header() {
         ) : (
           ""
         )}
-        {authUser ? (
+        {authUser?.isAdmin ? "" : authUser ? (
           <Link to="/profile">
             <img   src="../../public/icons8-user-48.png" alt="" />
           </Link>
         ) : (
           <Link to="/signup">SignUp</Link>
-        )}
-
+        )} 
+        
+        
         <Link to="/cart">
         {notificationCart ? <span className=" absolute right-30 p-1 rounded-lg bg-red-600"></span> : ""}
         {/* {noti ? <span className=" absolute right-30 p-1 rounded-lg bg-red-600"></span> : ""} */}
           <img src="../../public/icons8-cart-48.png" alt="" />
         </Link>
+
+
         {authUser ? (
           <Link to="/">
           <div

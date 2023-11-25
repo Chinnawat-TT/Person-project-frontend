@@ -22,9 +22,6 @@ export default function AdminHeader() {
         ) : (
           ""
         )}
-        <Link to="/cart">
-          <img src="../../public/icons8-cart-48.png" alt="" />
-        </Link>
         {authUser ? (
           <Link to="/">
           <div
