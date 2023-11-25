@@ -3,6 +3,7 @@ import axios from "../../config/axios";
 import Cartshow from "./Cartshow";
 import Carttotal from "./Carttotal";
 import { toast } from "react-toastify";
+
 import { useAuth } from "../../hooks/use-Auth";
 import { useCart } from "../../hooks/use-Cart";
 import { useForm } from 'react-hook-form';
@@ -33,6 +34,9 @@ export default function CartItem() {
   // }
   
   const handleCheckOut =()=>{
+    if(totalCart === 0){
+      return toast.error("คุณไม่มีสินค้าในตระกร้า")
+    }
     console.log("++++++++++++++++++++")
     let size = data.map(el => el.size)
     console.log("sizelength",size.length)

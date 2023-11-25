@@ -1,11 +1,24 @@
 import { useState } from "react";
+import { useAuth } from "../../hooks/use-Auth";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function SaleItem({ show ,addToCart}) {
+  const { authUser }= useAuth()
+  const navigate = useNavigate()
+  console.log(">>>>>>>>>>>>>>>>.",authUser)
   const {Productsimage}=show
   
   const [size ,setSize]=useState("")
 
   const handleSubmitForm = (event)=>{
+    if(authUser === null){
+      toast.error("กรุณาสมัครสมาชิกก่อน")
+      setTimeout(() => {
+        navigate("/signup")
+        
+      }, 1500);
+    }
     event.preventDefault();
     show.size = size
     addToCart(show)
@@ -13,7 +26,7 @@ export default function SaleItem({ show ,addToCart}) {
   }
   return (
     <form onSubmit={handleSubmitForm}>
-      <div className=" bg-yellow-200">
+      <div className=" ">
         <div><img src={show.mainImage} alt="" /> </div>
         {Productsimage.map( (el, index)=>(
          <div key={index}>
@@ -47,10 +60,10 @@ export default function SaleItem({ show ,addToCart}) {
           <option value="11">11</option>
           <option value="12">12</option>
         </select> */}
-        <button className=" bg-red-900 p-5"> ADD TO CART </button>
       </div>
-      <div className=" bg-cyan-300 ">
-        <div>
+        <button className=" bg-green-400 p-5"> ADD TO CART </button>
+      <div className=" gap-4 ">
+        <div className=" flex justify-between">
           <span>Description</span>
           
           <span>ProducutID : {show.id}</span>

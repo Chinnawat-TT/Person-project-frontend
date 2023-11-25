@@ -13,7 +13,7 @@ export default function Order() {
     <div>
       {order?.map((el)=>(
 
-      <AllOrder el={el}/>
+      <AllOrder el={el} order={order} setOrder={setOrder}/>
       ))}
       </div>
   )
