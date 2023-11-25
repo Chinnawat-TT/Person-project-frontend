@@ -46,7 +46,8 @@ export default function LoginPage() {
       return setError(validateError)
     }
     setError({})
-    login(input).catch(err => toast.error(err.response?.data.message) )
+    login(input)
+    .catch(err => toast.error(err.response?.data.message) )
     
       
   }
@@ -56,12 +57,7 @@ export default function LoginPage() {
   if(authUser){
     return <Navigate to="/"/>
   }
-  useEffect(()=>{
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-    }, 350);
-  },[])
+  
   return (
     <>
     {loading && <Loading/>}
