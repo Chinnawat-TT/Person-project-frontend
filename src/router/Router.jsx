@@ -28,11 +28,11 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: (
-          
+          <RedireactAuthenticated>
           <CartContextProvider>
               <CartPage />
           </CartContextProvider>
-          
+          </RedireactAuthenticated>
         ),
       },
       { path: "/signup", element: <SignUpPage /> },

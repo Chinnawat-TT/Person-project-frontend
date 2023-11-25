@@ -13,7 +13,7 @@ export default function SaleItem({ show ,addToCart}) {
 
   const handleSubmitForm = (event)=>{
     if(authUser === null){
-      toast.error("กรุณาสมัครสมาชิกก่อน")
+      toast.error("กรุณาสมัครสมาชิก")
       setTimeout(() => {
         navigate("/signup")
         
@@ -22,7 +22,6 @@ export default function SaleItem({ show ,addToCart}) {
     event.preventDefault();
     show.size = size
     addToCart(show)
-    
   }
   return (
     <form onSubmit={handleSubmitForm}>
@@ -45,27 +44,12 @@ export default function SaleItem({ show ,addToCart}) {
           <span className={` cursor-pointer hover:bg-slate-300  p-4 ${ size === "L" ? "bg-yellow-200":""}`} onClick={()=>setSize("L")}>L</span>
           <span className={` cursor-pointer hover:bg-slate-300  p-4 ${ size === "XL" ? "bg-yellow-200":""}`} onClick={()=>setSize("XL")}>XL</span>
         </div>
-        {/* <span>quantity</span>
-        <select name="size" id="size-select">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-        </select> */}
+       
       </div>
         <button className=" bg-green-400 p-5"> ADD TO CART </button>
       <div className=" gap-4 ">
         <div className=" flex justify-between">
           <span>Description</span>
-          
           <span>ProducutID : {show.id}</span>
         </div>
         <span>

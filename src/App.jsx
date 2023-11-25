@@ -14,7 +14,7 @@ if(intialLoading){
     
     <Router/>
 
-    <ToastContainer position="top-center" autoClose={2000} theme="dark" />
+    <ToastContainer position="top-center" autoClose={1500} theme="dark" />
     </>
   )
 }
