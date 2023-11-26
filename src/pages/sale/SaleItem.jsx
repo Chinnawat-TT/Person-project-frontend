@@ -49,7 +49,7 @@ export default function SaleItem({ show ,addToCart}) {
          </div>
         ))}
       </div> */}
-      <div className=" flex">
+      <div className=" flex" >
       <div className="px-4">
         <div className="w-full p-2 relative flex justify-center">
           <img
@@ -88,7 +88,7 @@ export default function SaleItem({ show ,addToCart}) {
         </div>
        
       </div>
-      <button className=" bg-red-500 p-5 hover:bg-red-400" onClick={handleSubmitForm}>  ADD TO CART </button>
+      <button className=" bg-red-500 p-5 hover:bg-red-400" onClick={handleSubmitForm} >  ADD TO CART </button>
       </div>
       </div>
 

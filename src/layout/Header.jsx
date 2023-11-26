@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../hooks/use-Auth";
 import { useEffect, useState } from "react";
 import axios from "../config/axios";
 
 
 export default function Header() {
+  const location =useLocation()
   const { authUser, logout , notificationCart} = useAuth();
   // const [noti, setNoti]=useState(false)
   
@@ -21,6 +22,9 @@ export default function Header() {
 
   // },[])
  console.log(">>>>>>>>>>>>>>>",authUser)
+ console.log("location <<<<<",location.pathname.split("/")[1])
+ 
+
 
   return (
     <header className=" flex h-12 gap-5 p-4 justify-between items-center bg-white top-0 ">
@@ -28,9 +32,15 @@ export default function Header() {
         <Link to="/">
           <img className=" h-5" src="../../public/logoneww.png" alt="" />
         </Link>
-        <Link to="/men" className="">Men</Link>
-        <Link to="/women">Women</Link>
-        <Link to="/kids">Kids</Link>
+        <Link to="/men">
+          <span  className={`  hover:underline hover:underline-offset-4 hover:decoration-4 ${location.pathname.split("/")[1] === "men" ? "underline decoration-4 underline-offset-4" : ""}`}>Men</span>
+          </Link>
+        <Link to="/women">
+          <span className={`  hover:underline hover:underline-offset-4 hover:decoration-4 ${location.pathname.split("/")[1] === "women" ? "underline decoration-4 underline-offset-4" : ""}`}>Women</span>
+          </Link>
+        <Link to="/kids">
+          <span className={`  hover:underline hover:underline-offset-4 hover:decoration-4 ${location.pathname.split("/")[1] === "kids" ? "underline decoration-4 underline-offset-4" : ""}`}> Kids</span>
+          </Link>
       </div>
       <div className=" flex justify-center items-center gap-2    ">
         {authUser?.isAdmin ? (
@@ -52,6 +62,11 @@ export default function Header() {
           <Link to="/signup">SignUp</Link>
         )} 
         
+        {authUser ? <Link to={"/wishlist"}>
+        <div className="cursor-pointer  flex justify-center items-center">
+        <span className="material-symbols-outlined">favorite</span>
+        </div>
+        </Link> : ""}
         
         <Link to="/cart">
           <div className="cursor-pointer  flex justify-center items-center">

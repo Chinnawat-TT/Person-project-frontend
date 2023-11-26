@@ -18,6 +18,7 @@ import AdminAllproduct from "../pages/admin/AdminAllProduct";
 import AuthContextProvider from "../contexts/AuthContext";
 import CartContextProvider from "../contexts/CartContext";
 import RedirectLogin from "../features/auth/RedirectLogin";
+import WishList from "../pages/WishList";
 
 
 const router = createBrowserRouter([
@@ -50,9 +51,10 @@ const router = createBrowserRouter([
       { path: "/women", element: <WomenPage /> },
       { path: "/kids", element: <KidsPage /> },
       { path: "/profile", element: <ProfilePage /> },
+      { path: "/wishlist" , element : <WishList/>},
       { path: "/men/saleitem/:itemId", element: <SaleCardItem /> },
       { path: "/women/saleitem/:itemId", element: <SaleCardItem /> },
-      {path : "/kids/saleitem/:itemId", element : <SaleCardItem /> }
+      { path: "/kids/saleitem/:itemId", element : <SaleCardItem /> }
     ],
   },
   {
