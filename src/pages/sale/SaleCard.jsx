@@ -4,10 +4,10 @@ export default function SaleCard({ show }) {
   
   return (
 
-    <div className=" w-full border rounded-lg shadow-sm">
+    <div className=" w-full border shadow-sm hover:ring-1 hover:ring-black">
       <div>
         <img 
-        className=" rounded-lg h-80"
+        className="  h-80"
         src={show.mainImage} alt="" />
       </div>
       <div className=" flex flex-col justify-center items-center">

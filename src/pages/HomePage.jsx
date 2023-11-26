@@ -14,8 +14,8 @@ export default function HomePage() {
   return (
     <>
     {loading && <Loading/>}
-    <div className=" w-full flex items-center justify-center ">
-        <img className =" object-contain" src="../../public/content2.png" alt=""  />
+    <div className="flex items-center justify-center w-full ">
+        <img className =" object-contain " src="../../public/content2.png" alt=""  />
     </div>
     </>
   )

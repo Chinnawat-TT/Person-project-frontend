@@ -23,12 +23,12 @@ export default function Header() {
  console.log(">>>>>>>>>>>>>>>",authUser)
 
   return (
-    <header className=" flex h-12 gap-5 p-4 justify-between items-center bg-white top-0">
+    <header className=" flex h-12 gap-5 p-4 justify-between items-center bg-white top-0 ">
       <div className=" flex justify-center items-center gap-5 ">
         <Link to="/">
           <img className=" h-5" src="../../public/logoneww.png" alt="" />
         </Link>
-        <Link to="/men">Men</Link>
+        <Link to="/men" className="">Men</Link>
         <Link to="/women">Women</Link>
         <Link to="/kids">Kids</Link>
       </div>

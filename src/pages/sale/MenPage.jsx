@@ -26,6 +26,11 @@ export default function MenPage() {
   return (
     <>
       {loading && <Loading/>}
+      <ol className=" px-10 pt-4">
+        <Link to={"/"}>
+        <span className=" font-sans">หน้าหลัก YUEDMAi</span>
+        </Link>
+      </ol>
     <div className=" flex flex-col md:flex-row gap-4 p-4 w-full justify-center items-center">
       
       {show.map((el, index) => (
