@@ -7,8 +7,10 @@ import { toast } from "react-toastify";
 import { useAuth } from "../../hooks/use-Auth";
 import { useCart } from "../../hooks/use-Cart";
 import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from "react-router-dom";
 
 export default function CartItem() {
+  const navigate = useNavigate()
   const [data, setData] = useState([]);
   const {setNotificationCart, totalCart , setTotalCart }=useAuth()
   const {newAmong ,setNewAmong ,setNewPrice,newPrice,checkOutCart}=useCart()
@@ -82,6 +84,13 @@ export default function CartItem() {
       const response = await axios.delete(`/verifi/delete/${itemId}`)
       console.log(response)
        setData(data.filter( el => el.id !== response.data.cartTargat.id))
+       
+     
+       if(data.length === 1){
+        
+        setNotificationCart(false)
+       }
+       
        toast.error("Delete")
   } catch (err) {
     console.log(err)
@@ -106,6 +115,8 @@ export default function CartItem() {
     axios("verifi/getcart")
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
+      console.log("useeffect runnnnnn.....")
+      setTotalCart(0)
       // if(data.length > 0){
       //   setNotificationCart(true)
       //  } else {
@@ -113,14 +124,15 @@ export default function CartItem() {
       //  }
   }, []);
   
- 
+  console.log("data cart", data)
   
   
 
   return (
     
-      <div>
-        
+      <div className=" flex flex-col">
+        <h1 className=" px-10 text-xl pt-5"> ตระกร้า </h1>
+        <div className=" flex flex-col gap-2">
         {data.map( (el,index) =>(
           <Cartshow el={el} key={index} deleteItemCart={deleteItemCart}  setTotalCart={setTotalCart} setNewAmong={setNewAmong} setNewPrice={setNewPrice} newAmong={newAmong}/>
     //       <div key={index}>
@@ -160,7 +172,13 @@ export default function CartItem() {
     // </div>
         ))}
         
-        <Carttotal totalCart={totalCart} handleCheckOut={handleCheckOut}  />
+        {data.length <= 0 ? <div className=" flex flex-col p-4 gap-4 px-10">
+          <span>ตระกร้าของคุณยังว่างอยู่</span>
+          
+          <span className=" p-4 text-white bg-black w-36 cursor-pointer" onClick={()=> navigate("/")}>เลือกซื้อสินค้าต่อ</span>
+          
+        </div> : <Carttotal totalCart={totalCart} handleCheckOut={handleCheckOut}  />}
+        </div>
       </div>
       
     

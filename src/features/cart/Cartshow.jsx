@@ -97,11 +97,11 @@ if (findIndex >= 0) {
       // console.log(among)
       
   return (
-    <div>
+    <div className=" px-10">
       
-      <div className=" h-1/3 w-1/2 border shadow-lg rounded-lg p-5 min-h-min flex gap-5  ">
+      <div className=" h-1/3 w-full  p-5 min-h-min flex gap-5 border-b-2  ">
         <div>
-          <img className=" rounded-lg h-36 w-60 " src={el.products.mainImage} alt="" />
+          <img className="  h-36 w-36 " src={el.products.mainImage} alt="" />
         </div>
 
         <div className=" flex flex-col ">
