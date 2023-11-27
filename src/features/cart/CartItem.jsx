@@ -106,11 +106,11 @@ export default function CartItem() {
     axios("verifi/getcart")
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
-      if(data.length > 0){
-        setNotificationCart(true)
-       } else {
-        setNotificationCart(false)
-       }
+      // if(data.length > 0){
+      //   setNotificationCart(true)
+      //  } else {
+      //   setNotificationCart(false)
+      //  }
   }, []);
   
  
