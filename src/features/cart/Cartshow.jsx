@@ -59,15 +59,15 @@ export default function Cartshow( { el ,deleteItemCart,setTotalCart,setNewAmong,
     const findIndex = newAmong.findIndex(element => element.productId === el.products.id);
 
 if (findIndex >= 0) {
-    // หากพบข้อมูลที่มี productId เดียวกัน ให้อัปเดตข้อมูล
+   
     setNewAmong(prev => {
         const updatedNewAmong = [...prev];
         updatedNewAmong[findIndex] = obj;
         return updatedNewAmong;
     });
-    console.log("okja");
+    
 } else {
-    // ถ้าไม่พบข้อมูลที่มี productId เดียวกัน ให้เพิ่มข้อมูลใหม่
+    
     setNewAmong(prev => [...prev, obj]);
 }
    
@@ -100,21 +100,29 @@ if (findIndex >= 0) {
     <div className=" px-10">
       
       <div className=" h-1/3 w-full  p-5 min-h-min flex gap-5 border-b-2  ">
-        <div>
-          <img className="  h-36 w-36 " src={el.products.mainImage} alt="" />
-        </div>
+        
 
-        <div className=" flex flex-col ">
-          <span>{el.products.name} </span>
-          <span>Product id :{el.products.id}</span>
-          <span>Size :{el.size}</span>
+          <img className="  h-36 w-36 " src={el.products.mainImage} alt="" />
+
+        <div className=" flex flex-col w-full gap-1">
+          <div className=" flex justify-between">
+          <span className=" font-semibold">{el.products.name} </span>
+          
+          <span className="material-symbols-outlined cursor-pointer p-1" onClick={handleClickDelete}>close</span>
+          
+          </div>
+          <span className=" font-thin">Product id : {el.products.id}</span>
+          <span className=" font-sans">Size : {el.size}</span>
           <span>pice : {el.products.price}</span>
+          <div className=" flex justify-between items-center">
+          <div className=" flex flex-col gap-2">
           <span>quantity</span>
           <select 
           name="quantiny" 
           id="size-select" 
-          className=" w-40" 
+          className=" w-40 p-2" 
           onChange={handleChangeAmong}
+          
           // {...register("quantiny" , {
           //   required: "กรุณาเลือกจำนวนสินค้า",
           // })}
@@ -133,8 +141,14 @@ if (findIndex >= 0) {
             <option value="11">11</option>
             <option value="12">12</option>
           </select>
-          <span className=" p-1 text-red-400">sub total : {result}</span>
-          <span className=" cursor-pointer bg-red-300 p-1 w-fit" onClick={handleClickDelete}>Delete</span>
+          </div>
+          <div className=" flex  items-center">
+
+          <span className=" p-1 font-sans">sub total : </span>
+          <p className=" font-semibold mt-[3px] text-xl">{result}</p>
+          </div>
+          </div>
+          
         </div>
         
       </div>
