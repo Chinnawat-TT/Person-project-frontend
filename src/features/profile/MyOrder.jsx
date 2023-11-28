@@ -39,9 +39,9 @@ export default function MyOrder({ el, setOrder, order, refresh, setRefresh }) {
     }
   };
   return (
-    <div>
+    <>
       {loading && <Loading />}
-      <div className=" border-2 p-5">
+      <div className=" flex flex-col p-5 ">
         <p>order : {el.id}</p>
         {el.items?.map((element) => (
           <div className=" border-2 p-5 ">
@@ -64,7 +64,7 @@ export default function MyOrder({ el, setOrder, order, refresh, setRefresh }) {
           )}
         </div>
 
-        <div className=" flex ">
+        <div className=" flex border-b-2 pb-5">
           <p>confirmSilp : </p>
           {el.status === "SUCCESS" ? <p className=" text-green-500"> THANK YOU </p> : <div className=" flex flex-col ">
             <input
@@ -82,6 +82,6 @@ export default function MyOrder({ el, setOrder, order, refresh, setRefresh }) {
           
         </div>
       </div>
-    </div>
+    </>
   );
 }
