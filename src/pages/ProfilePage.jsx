@@ -36,7 +36,7 @@ export default function ProfilePage() {
 
           <div className=" flex gap-10">
 
-          <div className=" flex flex-col gap-4 p-4 ">
+          <div className=" flex flex-col gap-4 p-4 w-44">
             <span className={`cursor-pointer ${ mode === "member" ? "underline decoration-2 underline-offset-4" : ""}`} onClick={() => setMode("member")}>
               สมาชิก
             </span>
@@ -44,12 +44,12 @@ export default function ProfilePage() {
               รายการสินค้าที่ซื้อ
             </span>
           </div>
-        { mode === "member" ? <div className="border">
+        { mode === "member" ? <div className="border w-full p-4">
           <h2 className="">สมาชิก</h2>
           <p className=" font-sans">email: {user.email}</p>
           <p className=" font-sans">fullname : {user.fullName}</p>
         </div> : ""}
-        { mode === "order" ? <div className=" border-2">
+        { mode === "order" ? <div className=" border-2 w-full">
           <h2 className="pt-4 px-5">รายการสินค้าที่ซื้อ</h2>
           {order?.map((el) => (
             <div key={el.id}>

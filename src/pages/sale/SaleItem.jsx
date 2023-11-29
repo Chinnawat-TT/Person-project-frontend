@@ -76,9 +76,9 @@ export default function SaleItem({ show ,addToCart}) {
       <span></span>
       <div className=" flex flex-col p-4 justify-between">
       <div className=" flex flex-col p-4 gap-4">
-        <span>{show.name}</span>
-        <span>price : {show.price}</span>
-        <span>size : {size === "" ? <span className=" text-red-400">กรุณาเลือกไซส์</span> : size}</span>
+        <span className=" font-semibold">{show.name}</span>
+        <span className=" font-semibold">price : {show.price}</span>
+        <span className=" font-semibold">size : {size === "" ? <span className=" text-red-400">กรุณาเลือกไซส์</span> : size}</span>
         <div className=" flex gap-4">
           
           <span className={` cursor-pointer hover:ring-2  hover:text-white hover:bg-black p-4 w-16 flex justify-center items-center${ size === "S" ? "outline-2 outline-black text-white bg-black":""}`} onClick={()=>setSize("S")}>S</span>
@@ -95,10 +95,10 @@ export default function SaleItem({ show ,addToCart}) {
 
       <div className=" border-t-2 p-4">
         <div className=" flex justify-between">
-          <span>Description</span>
-          <span>ProducutID : {show.id}</span>
+          <span className=" font-sans">Description</span>
+          <span className=" font-thin">ProducutID : {show.id}</span>
         </div>
-        <span>
+        <span className=" font-sans">
           {show.description}
         </span>
       </div>

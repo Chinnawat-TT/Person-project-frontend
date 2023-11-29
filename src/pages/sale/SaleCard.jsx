@@ -11,7 +11,7 @@ export default function SaleCard({ show }) {
         src={show.mainImage} alt="" />
       </div>
       <div className=" flex flex-col justify-center items-center">
-        <span>{show.name}</span>
+        <span className=" font-semibold">{show.name}</span>
         <span>{show.price}Bath</span>
       </div>
     </div>
