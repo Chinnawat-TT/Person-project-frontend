@@ -13,8 +13,8 @@ export default function AuthContextProvider({ children }) {
   const [authUser, setAuthUser] = useState(null);
   const [intialLoading, setIntialLoading] = useState(true);
   const [notificationCart, setNotificationCart] = useState(false);
-  const [totalCart,setTotalCart]=useState(0)
-  const [newAmong ,setNewAmong]=useState({})
+  
+ 
 
   useEffect(
     () => {
@@ -40,7 +40,7 @@ export default function AuthContextProvider({ children }) {
     []
   );
 
-    console.log(totalCart)
+  
 
   const signup = async (registerObject) => {
     const response = await axios.post("/verifi/signup", registerObject);
@@ -68,7 +68,7 @@ export default function AuthContextProvider({ children }) {
 
   
 
-  console.log(authUser);
+  // console.log(authUser);
   return (
     <AuthContext.Provider
       value={{
@@ -79,8 +79,7 @@ export default function AuthContextProvider({ children }) {
         intialLoading,
         notificationCart,
         setNotificationCart,
-        setTotalCart,
-        totalCart,
+        
         
 
       }}

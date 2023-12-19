@@ -21,8 +21,8 @@ export default function Header() {
   //   }).catch( err => console.log(err))
 
   // },[])
- console.log(">>>>>>>>>>>>>>>",authUser)
- console.log("location <<<<<",location.pathname.split("/")[1])
+//  console.log(">>>>>>>>>>>>>>>",authUser)
+//  console.log("location <<<<<",location.pathname.split("/")[1])
  
 
 

@@ -4,7 +4,7 @@ import { useAuth } from "../../hooks/use-Auth";
 
 export default function RedireactAuthenticated({ children }) {
   const { authUser } = useAuth();
-  console.log("RedireactAuthenticated =", authUser);
+  // console.log("RedireactAuthenticated =", authUser);
   if (authUser === null) {
     toast.error("กรุณาสมัครสมาชิก")
     return <Navigate to="/" />;
