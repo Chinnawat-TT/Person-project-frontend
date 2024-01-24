@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useAuth } from "../../hooks/use-Auth";
+import { useAuth } from "../hooks/use-Auth";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import ImageCarousel from "../../components/ImageCarousel";
-import ImageController from "../../components/ImageController";
+import ImageCarousel from "./ImageCarousel";
+import ImageController from "./ImageController";
 
 export default function SaleItem({ show ,addToCart}) {
   const { authUser }= useAuth()
@@ -11,7 +11,7 @@ export default function SaleItem({ show ,addToCart}) {
   const [selectedImage, setSelectedImage] = useState(0);
   
   const {Productsimage}=show
-  console.log(">>>>>>>>>>>>>>>>",Productsimage)
+  // console.log(">>>>>>>>>>>>>>>>",Productsimage)
   const objMainImage = {name :show.mainImage}
   const [size ,setSize]=useState("")
   

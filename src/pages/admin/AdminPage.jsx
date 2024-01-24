@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import Products from "./Products";
-import Order from "./Order";
+import Products from "../../features/admin/Products";
+import Order from "../../features/admin/Order";
 import axios from "../../config/axios";
-import TableAllProduct from "./TableAllProduct";
+import AllProduct from "../../features/admin/AllProduct";
+
+
 
 
 export default function AdminPage() {
@@ -53,7 +55,7 @@ export default function AdminPage() {
                 </div>
             ))} */}
 
-            {isShow === "allProduct" ? <TableAllProduct />: ""}
+            {isShow === "allProduct" ? <AllProduct />: ""}
 
             {isShow === "createProduct" ? <Products /> : ""}
             {isShow === "order" ? <Order /> : ""}

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Modal from "../../components/Modal"
-import EditProduct from "./EditProduct"
+import EditProduct from "../admin/EditProduct"
+
 
 
 export default function Table({ productobj ,deleteProduct,editDetailProduct }) {

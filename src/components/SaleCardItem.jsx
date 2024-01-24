@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "../../config/axios";
+import axios from "../config/axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import SaleItem from "./SaleItem";
-import { useAuth } from "../../hooks/use-Auth";
+import { useAuth } from "../hooks/use-Auth";
 
 export default function SaleCardItem() {
   const { itemId } = useParams();

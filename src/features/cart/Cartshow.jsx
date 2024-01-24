@@ -4,11 +4,7 @@ import { useCart } from "../../hooks/use-Cart";
 
 export default function Cartshow({
   el,
-  
   setTotalCart,
-
-  
-  
 }) {
   // console.log("element",el)
   const {newAmong ,setNewAmong ,setNewPrice,newPrice,deleteItemCart,getDataCart}=useCart()

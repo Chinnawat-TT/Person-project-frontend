@@ -39,10 +39,10 @@ export default function CartContextProvider({ children }) {
       const res = await axios("verifi/getcart");
       setDataCart(res.data);
 
-      const getQuantity = res.data.map((el) => el.quantity); // Use res.data here
+      const getQuantity = res.data.map((el) => el.quantity); 
       console.log("getQuantity", getQuantity);
 
-      const getPrice = res.data.map((el) => el.products.price); // Use res.data here
+      const getPrice = res.data.map((el) => el.products.price); 
       console.log("getPrice", getPrice);
 
       setNewPrice(
@@ -66,7 +66,7 @@ export default function CartContextProvider({ children }) {
       const newData = dataCart.filter(
         (el) => el.id !== response.data.cartTargat.id
       );
-      console.log("+++++++++++++", newData);
+      // console.log("+++++++++++++", newData);
 
       setDataCart(newData);
 
@@ -83,8 +83,8 @@ export default function CartContextProvider({ children }) {
   useEffect(()=>{
     getDataCart()
   },[newAmong, newPrice])
-  console.log(">>>>>>>", newAmong);
-  console.log("data in cartcontext",dataCart)
+  // console.log(">>>>>>>", newAmong);
+  // console.log("data in cartcontext",dataCart)
   return (
     <CartContext.Provider value={{ setNewAmong, newAmong ,setNewPrice,newPrice ,checkOutCart ,totalCart,setTotalCart,dataCart,setDataCart,deleteItemCart,getDataCart}}
     >

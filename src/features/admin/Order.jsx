@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import AllOrder from "../admin/AllOrder";
+import AllOrder from "./AllOrder";
 import axios from "../../config/axios";
 
 
@@ -8,7 +8,7 @@ export default function Order() {
   useEffect(()=>{
     axios.get("/admin/getOrder").then(res => setOrder(res.data.Order)).catch(err => console.log(err))
   },[])
-  console.log(">>>>>>>>>>>>>>>>>>>>",order)
+  // console.log(">>>>>>>>>>>>>>>>>>>>",order)
   return (
     <div>
       {order?.map((el)=>(

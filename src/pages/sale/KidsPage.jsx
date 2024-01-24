@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "../../config/axios";
-import SaleCard from "./Salecard";
+
 import { Link } from "react-router-dom";
 import Loading from "../../components/Loading";
+import SaleCard from "../../components/SaleCard";
 
 export default function KidsPage() {
   const [show, setShow] = useState([]);

@@ -4,7 +4,6 @@ import SignUpInput from "../features/auth/SignUpInput";
 import { useAuth } from "../hooks/use-Auth";
 import { toast } from "react-toastify";
 import InputErrorMessage from "../features/auth/InputErrorMessage";
-import { Navigate } from "react-router-dom";
 import Loading from "../components/Loading";
 
 

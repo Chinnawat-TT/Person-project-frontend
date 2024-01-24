@@ -9,16 +9,18 @@ import KidsPage from "../pages/sale/KidsPage";
 import CartPage from "../pages/CartPage";
 import ProfilePage from "../pages/ProfilePage";
 import RedireactAuthenticated from "../features/auth/RedireactAuthenticated";
-import AdminPage from "../features/profile/AdminPage";
-import AddProduct from "../features/profile/AddProduct";
-import SaleCardItem from "../pages/sale/SaleCardItem";
+
+import AddProduct from "../features/admin/AddProduct";
+
 import AdminLayout from "../layout/AdminLayout";
 import AdminAuthenticate from "../features/auth/AdminAuthenticate";
-import AdminAllproduct from "../pages/admin/AdminAllProduct";
+
 import AuthContextProvider from "../contexts/AuthContext";
 import CartContextProvider from "../contexts/CartContext";
 import RedirectLogin from "../features/auth/RedirectLogin";
 import WishList from "../pages/WishList";
+import SaleCardItem from "../components/SaleCardItem";
+import AdminPage from "../pages/admin/AdminPage";
 
 
 const router = createBrowserRouter([
@@ -67,7 +69,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/admin", element: <AdminPage /> },
       { path: "/admin/addproduct", element: <AddProduct /> },
-      { path: "/admin/allproduct", element: <AdminAllproduct /> },
+      // { path: "/admin/allproduct", element: <AdminAllproduct /> },
     ],
   },
 ]);

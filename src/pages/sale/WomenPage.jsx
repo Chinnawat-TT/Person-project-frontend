@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import SaleCard from "./Salecard";
+
 import axios from "../../config/axios";
 import { Link, useLocation } from "react-router-dom";
 import Loading from "../../components/Loading";
+import SaleCard from "../../components/SaleCard";
 
 export default function WomenPage() {
   const [show, setShow] = useState([]);
