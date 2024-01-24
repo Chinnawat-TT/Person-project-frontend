@@ -74,8 +74,8 @@ export default function AddProduct() {
       <nav className=" p-4"> ADMIN - ADDPRODUCT </nav>
     <form onSubmit={handleSubmitForm} className=" flex flex-col items-center h-[580px] gap-1">
         {loading && <Loading/>}
-      <div className="flex flex-col gap-1 items-center justify-center border w-[800px] p-1">
-        <span>Create product</span>
+      <div className="flex flex-col gap-1 border w-[800px] p-1">
+        <span className=" font-bold flex justify-center">Create product</span>
         <div className=" flex flex-col">
           <span>Product Name</span>
           <input
@@ -94,11 +94,12 @@ export default function AddProduct() {
             name="price"
             value={input.price}
             onChange={handleChangeInput}
+            className=" w-48"
           />
         </div>
         <div className=" flex flex-col">
           <span>Type</span>
-          <select name="type" id="type-select" onChange={handleChangeInput}>
+          <select name="type" id="type-select" onChange={handleChangeInput} className=" w-48">
             <option value="">You have selected</option>
             <option value="TSHIRT">TSHIRT</option>
             <option value="JACKET">JACKET</option>
@@ -110,6 +111,7 @@ export default function AddProduct() {
             name="categories"
             id="categories-select"
             onChange={handleChangeInput}
+            className=" w-48"
           >
             <option value="">You have selected</option>
             <option value="MEN">MEN</option>
@@ -124,6 +126,7 @@ export default function AddProduct() {
             name="description"
             value={input.description}
             onChange={handleChangeInput}
+            className=" overflow-auto"
           ></textarea>
         </div>
         <div className=" flex h-52 gap-20 w-full">

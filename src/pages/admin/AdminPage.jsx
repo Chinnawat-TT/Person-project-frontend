@@ -10,7 +10,7 @@ import AllProduct from "../../features/admin/AllProduct";
 export default function AdminPage() {
   const [isShow, setIsShow] = useState("allProduct");
   const [data, setData] = useState([]);
- 
+  
 //   useEffect(() => {
 //     axios
 //       .get("/admin")
@@ -27,25 +27,25 @@ export default function AdminPage() {
         <div className=" flex flex-col border rounded-lg gap-5 w-80 ">
           <span>sild bar</span>
           <button
-            className=" border rounded-lg  hover:bg-slate-200"
+            className={`cursor-pointer ${ isShow === "allProduct" ? "underline decoration-2 underline-offset-4" : ""} hover:font-semibold`}
             onClick={() => setIsShow("allProduct")}
           >
             All Product
           </button>
           <button
-            className=" border rounded-lg hover:bg-slate-200 "
+            className={`cursor-pointer ${ isShow === "order" ? "underline decoration-2 underline-offset-4" : ""} hover:font-semibold`}
             onClick={() => setIsShow("order")}
           >
             Order
           </button>
           <button
-            className=" border rounded-lg  hover:bg-slate-200"
+            className={`cursor-pointer ${ isShow === "createProduct" ? "underline decoration-2 underline-offset-4" : ""} hover:font-semibold`}
             onClick={() => setIsShow("createProduct")}
           >
             Create Product
           </button>
         </div>
-        <div className=" border rounded-lg w-5/6">
+        <div className=" border rounded-lg w-5/6 ">
           <div>
 
             

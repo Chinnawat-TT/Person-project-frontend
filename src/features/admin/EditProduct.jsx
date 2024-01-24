@@ -1,10 +1,13 @@
 import { useState } from "react";
 
-export default function EditProduct({ handleClickEditDetial }) {
+export default function EditProduct({ handleClickEditDetial ,name,description,price}) {
+  console.log(name)
+  console.log(description)
+  console.log(price)
   const [input, setInput] = useState({
-    name: "",
-    price: "",
-    description: "",
+    name,
+    price,
+    description,
   });
   const handleChangeInput = (event) => {
     setInput({ ...input, [event.target.name]: event.target.value });
@@ -15,10 +18,12 @@ export default function EditProduct({ handleClickEditDetial }) {
   };
   
   return (
-    <form onSubmit={handleSubmidForm}>
-      <div className=" flex flex-col">
-        <span>Product Name</span>
+    <form onSubmit={handleSubmidForm} className="flex flex-col gap-4">
+      <div>
+      <div className=" flex flex-col gap-2">
+        <span className=" font-semibold">Product Name</span>
         <input
+          
           type="text"
           placeholder="product name"
           name="name"
@@ -26,8 +31,8 @@ export default function EditProduct({ handleClickEditDetial }) {
           onChange={handleChangeInput}
         />
       </div>
-      <div className=" flex flex-col">
-        <span>Price</span>
+      <div className=" flex flex-col gap-2">
+        <span className=" font-semibold">Price</span>
         <input
           type="text"
           placeholder="price"
@@ -36,8 +41,8 @@ export default function EditProduct({ handleClickEditDetial }) {
           onChange={handleChangeInput}
         />
       </div>
-      <div className=" flex flex-col">
-        <span>Description</span>
+      <div className=" flex flex-col gap-2">
+        <span className=" font-semibold">Description</span>
         <textarea
           id="description"
           name="description"
@@ -46,8 +51,11 @@ export default function EditProduct({ handleClickEditDetial }) {
           onChange={handleChangeInput}
         ></textarea>
       </div>
+      </div>
+      <div>
+      <button className=" p-2 hover:font-semibold hover:ring-2 hover:ring-black">update</button>
 
-      <button>update</button>
+      </div>
     </form>
   );
 }

@@ -16,22 +16,51 @@ const handleClickEditDetial =(body)=>{
     setIsOpen(false)
 }
   return (
-    <div>
-                  <td>{productobj.id}</td>
-                  <td>{productobj.name}</td>
-                  <td>{productobj.price}</td>
-                  <td>{productobj.categories}</td>
-                  <td>{productobj.type}</td>
-                  <td>{productobj.description}</td>
-                  <td><img className=" h-10 w-10" src={productobj.mainImage} alt="" /></td>
+    <div className=" border border-black ">
+                  <div className=" flex justify-between p-2">
+                  <div>
+                    <span className=" font-semibold">Product ID : </span> 
+                    {productobj.id}
+                  </div>
+                  <div>
+                  <span className=" font-semibold">Price : </span> 
+                    {productobj.price}
+                  </div>
+                  </div>
+                  <div className="flex justify-between p-2">
+                  <div >
+                  <span className=" font-semibold">Product name : </span> 
+                    {productobj.name}
+                    
+                  </div>
+                  <div>
+                  <span className=" font-semibold">Categories : </span> 
+                    {productobj.categories}
+                  </div>
+                  <div>
+                  <span className=" font-semibold">Type : </span> 
+                    {productobj.type}
+                  </div>
+                  </div>
+                  <div className=" p-2">
+                  <span className=" font-semibold">Description : </span> 
+                    {productobj.description}
+                  </div>
+                  <div className=" p-2">
+
+                  <img className=" h-36 w-40" src={productobj.mainImage} alt="" />
+                  </div>
                   <Modal 
                   open={isopen}
                   onClose={ ()=>setIsOpen(false)}
                   >
-                  <EditProduct handleClickEditDetial={handleClickEditDetial}/>
+                  <EditProduct handleClickEditDetial={handleClickEditDetial} price={productobj.price} name={productobj.name} description={productobj.description} />
                   </Modal>
-                  <td><span className="material-symbols-outlined cursor-pointer" onClick = {() => setIsOpen(true)}>edit</span></td>
-                  <td><span className="material-symbols-outlined cursor-pointer" onClick={handleClickDelete}>delete</span></td>
+                  <div className="flex gap-28 p-2">
+
+                  <span className="material-symbols-outlined cursor-pointer" onClick = {() => setIsOpen(true)}>edit</span>
+                  <span className="material-symbols-outlined cursor-pointer" onClick={handleClickDelete}>delete</span>
+                  </div>
     </div>
   )
 }

@@ -39,27 +39,14 @@ export default function AllProduct() {
   return (
     <div>
 
-      <table>
-        <thead>
-          <tr >
-            <th>Product ID</th>
-            <th>Product name</th>
-            <th>Price</th>
-            <th>Categories</th>
-            <th>Type</th>
-            <th>Description</th>
-            <th>Image</th>
-          </tr>
-        </thead>
-        <tbody> 
+      
           {data?.map( (el)=>(
-          <tr >
+         
                 <Table key={el.id} productobj={el} deleteProduct={deleteProduct} editDetailProduct={editDetailProduct}/>
 
-          </tr>
+          
               ))}
-        </tbody>
-      </table>
+      
       
     </div>
   );
