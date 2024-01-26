@@ -53,7 +53,7 @@ export default function SaleItem({ show ,addToCart}) {
       <div className="px-4">
         <div className="w-full p-2 relative flex justify-center">
           <img
-            src={Productsimage[selectedImage].name} 
+            src={Productsimage[selectedImage]?.name} 
             alt="product-image"
             className="w-96  aspect-square object-cover"
           />

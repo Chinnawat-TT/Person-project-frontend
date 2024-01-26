@@ -9,7 +9,7 @@ function ImageCarousel({ images, setSelectedImage }) {
   
   return (
     <Swiper
-      slidesPerView={5}
+      slidesPerView={6}
       centeredSlides={false}
       freeMode={true}
       mousewheel={true}
@@ -19,7 +19,7 @@ function ImageCarousel({ images, setSelectedImage }) {
       {images?.map((image, index) => (
         <SwiperSlide key={index}>
           <div
-            className="px-2 cursor-pointer"
+            className=" px-1 cursor-pointer"
             onClick={() => setSelectedImage(index)}
           >
             <img
